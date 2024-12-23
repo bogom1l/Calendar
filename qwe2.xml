@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<events>
+    <event>
+        <date>2024-12-23</date>
+        <description>Important team meeting</description>
+        <timeEnd>11:00</timeEnd>
+        <timeStart>10:00</timeStart>
+        <title>Meeting</title>
+    </event>
+</events>
