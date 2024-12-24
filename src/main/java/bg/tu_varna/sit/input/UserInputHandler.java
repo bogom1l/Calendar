@@ -1,10 +1,7 @@
 package bg.tu_varna.sit.input;
 
 import bg.tu_varna.sit.commands.contracts.Command;
-import bg.tu_varna.sit.commands.event.BookCommand;
-import bg.tu_varna.sit.commands.event.FindCommand;
-import bg.tu_varna.sit.commands.event.ListAllCommand;
-import bg.tu_varna.sit.commands.event.UnbookCommand;
+import bg.tu_varna.sit.commands.event.*;
 import bg.tu_varna.sit.commands.eventswrapper.CloseCommand;
 import bg.tu_varna.sit.commands.eventswrapper.OpenCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
@@ -31,6 +28,7 @@ public class UserInputHandler {
         Command unbookEventCommand = new UnbookCommand(eventService, scanner);
         Command listAllEventsCommand = new ListAllCommand(eventService);
         Command findEventCommand = new FindCommand(eventService, scanner);
+        Command agendaEventCommand = new AgendaCommand(eventService, scanner);
 
         while (true) {
             printMenu();
@@ -68,6 +66,9 @@ public class UserInputHandler {
                 case "find":
                     findEventCommand.execute();
                     break;
+                case "agenda":
+                    agendaEventCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -91,6 +92,7 @@ public class UserInputHandler {
             System.out.println("unbook - Unbook event");
             System.out.println("listall - List all events");
             System.out.println("find - Find event");
+            System.out.println("agenda - List all events for a date");
             System.out.println("exit - Exit");
         }
     }

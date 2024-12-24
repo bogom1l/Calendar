@@ -6,6 +6,7 @@ import bg.tu_varna.sit.util.JAXBParser;
 import jakarta.xml.bind.JAXBException;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,13 @@ public class EventService {
 
     public void unbookEvent(Event event) {
         this.eventsWrapper.getEvents().remove(event);
+    }
+
+    public List<Event> getAgendaForDateSortedByTime(String date) {
+        return eventsWrapper.getEvents().stream()
+                .filter(event -> event.getDate().equals(date))
+                .sorted(Comparator.comparing(Event::getTimeStart))
+                .toList();
     }
 
     public List<Event> listAllEvents() {
