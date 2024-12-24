@@ -21,4 +21,11 @@
         <timeStart>4</timeStart>
         <title>4</title>
     </event>
+    <event>
+        <date>7</date>
+        <description>7</description>
+        <timeEnd>7</timeEnd>
+        <timeStart>7</timeStart>
+        <title>7</title>
+    </event>
 </events>

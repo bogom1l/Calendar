@@ -20,6 +20,14 @@ public class EventService {
 
     // Open an existing calendar (load events from an XML file)
     public boolean open(File xmlFile) {
+
+        if (xmlFile == null || !xmlFile.exists()) {
+            System.out.println("The specified file does not exist.");
+            return false;
+        }
+
+
+
         try {
             this.eventsWrapper = JAXBParser.loadEventsFromXML(xmlFile);
             this.currentFile = xmlFile;
@@ -87,6 +95,10 @@ public class EventService {
                 .filter(e -> e.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) ||
                         e.getDescription().contains(searchTerm))
                 .collect(Collectors.toList());
+    }
+
+    public boolean isCalendarOpen() {
+        return currentFile != null;
     }
 
 }

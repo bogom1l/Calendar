@@ -11,6 +11,7 @@ import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveCommand;
 import bg.tu_varna.sit.service.EventService;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserInputHandler {
@@ -45,6 +46,12 @@ public class UserInputHandler {
             System.out.println("9. Exit");
 
             String choice = scanner.nextLine();
+
+            // Allow open and exit without check
+            if (!eventService.isCalendarOpen() && !choice.equals("1") && !choice.equals("9")) {
+                System.out.println("No calendar file is currently open. Please open a file first.");
+                continue;
+            }
 
             switch (choice) {
                 case "1":
