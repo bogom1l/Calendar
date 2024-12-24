@@ -71,7 +71,7 @@ public class EventService {
         return this.eventsWrapper.getEvents().add(event);
     }
 
-    public Optional<Event> findEventByDateAndTimeStartAndTimeEnd(String date, String timeStart, String timeEnd) {
+    public Optional<Event> findEventByDateAndTimeStartAndTimeEnd(LocalDate date, LocalTime timeStart, LocalTime timeEnd) {
         return this.eventsWrapper.getEvents().stream()
                 .filter(e -> e.getDate().equals(date) &&
                         e.getTimeStart().equals(timeStart) &&
@@ -79,7 +79,7 @@ public class EventService {
                 .findFirst();
     }
 
-    public Optional<Event> findEventByDateAndTimeStart(String date, String timeStart) {
+    public Optional<Event> findEventByDateAndTimeStart(LocalDate date, LocalTime timeStart) {
         return this.eventsWrapper.getEvents().stream()
                 .filter(e -> e.getDate().equals(date) &&
                         e.getTimeStart().equals(timeStart))
@@ -90,7 +90,7 @@ public class EventService {
         this.eventsWrapper.getEvents().remove(event);
     }
 
-    public List<Event> getAgendaForDateSortedByTime(String date) {
+    public List<Event> getAgendaForDateSortedByTime(LocalDate date) {
         return eventsWrapper.getEvents().stream()
                 .filter(event -> event.getDate().equals(date))
                 .sorted(Comparator.comparing(Event::getTimeStart))
@@ -109,22 +109,22 @@ public class EventService {
     }
 
     //todo ?
-    public boolean isConflict(LocalDate date, LocalTime timeStart, LocalTime timeEnd) {
-        // Loop through all events to find conflicts on the same date
-        for (Event event : this.eventsWrapper.getEvents()) {
-            // Check if the event is on the same date
-            if (event.getDate().equals(date)) {
-                LocalTime existingTimeStart = LocalTime.parse(event.getTimeStart());
-                LocalTime existingTimeEnd = LocalTime.parse(event.getTimeEnd());
-
-                // Check if the new event time range overlaps with an existing event
-                if (timeStart.isBefore(existingTimeEnd) && timeEnd.isAfter(existingTimeStart)) {
-                    return true; // Conflict found
-                }
-            }
-        }
-        return false; // No conflict
-    }
+//    public boolean isConflict(LocalDate date, LocalTime timeStart, LocalTime timeEnd) {
+//        // Loop through all events to find conflicts on the same date
+//        for (Event event : this.eventsWrapper.getEvents()) {
+//            // Check if the event is on the same date
+//            if (event.getDate().equals(date)) {
+//                LocalTime existingTimeStart = LocalTime.parse(event.getTimeStart());
+//                LocalTime existingTimeEnd = LocalTime.parse(event.getTimeEnd());
+//
+//                // Check if the new event time range overlaps with an existing event
+//                if (timeStart.isBefore(existingTimeEnd) && timeEnd.isAfter(existingTimeStart)) {
+//                    return true; // Conflict found
+//                }
+//            }
+//        }
+//        return false; // No conflict
+//    }
 
 
 }

@@ -4,6 +4,7 @@ import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,16 +19,16 @@ public class AgendaCommand implements Command {
 
     @Override
     public void execute() {
-        String date = promptForDate();
+        LocalDate date = promptForDate();
 
         List<Event> events = eventService.getAgendaForDateSortedByTime(date);
 
         printAgenda(events);
     }
 
-    private String promptForDate() {
+    private LocalDate promptForDate() {
         System.out.print("Enter the date (yyyy-mm-dd) to view events: ");
-        return scanner.nextLine();
+        return LocalDate.parse(scanner.nextLine());
     }
 
     private void printAgenda(List<Event> events) {

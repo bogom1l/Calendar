@@ -1,21 +1,34 @@
 package bg.tu_varna.sit.model;
 
+import bg.tu_varna.sit.util.LocalDateAdapter;
+import bg.tu_varna.sit.util.LocalTimeAdapter;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @XmlRootElement
 public class Event {
     private String title;
-    private String date;
-    private String timeStart;
-    private String timeEnd;
+
+    //@XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate date;
+
+    //@XmlJavaTypeAdapter(LocalTimeAdapter.class)
+    private LocalTime timeStart;
+
+    //@XmlJavaTypeAdapter(LocalTimeAdapter.class)
+    private LocalTime timeEnd;
+
     private String description;
 
     // Default constructor required by JAXB
     public Event() {
     }
 
-    public Event(String title, String date, String timeStart, String timeEnd, String description) {
+    public Event(String title, LocalDate date, LocalTime timeStart, LocalTime timeEnd, String description) {
         this.title = title;
         this.date = date;
         this.timeStart = timeStart;
@@ -33,29 +46,32 @@ public class Event {
     }
 
     @XmlElement
-    public String getDate() {
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
     @XmlElement
-    public String getTimeStart() {
+    @XmlJavaTypeAdapter(LocalTimeAdapter.class)
+    public LocalTime getTimeStart() {
         return timeStart;
     }
 
-    public void setTimeStart(String timeStart) {
+    public void setTimeStart(LocalTime timeStart) {
         this.timeStart = timeStart;
     }
 
     @XmlElement
-    public String getTimeEnd() {
+    @XmlJavaTypeAdapter(LocalTimeAdapter.class)
+    public LocalTime getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(String timeEnd) {
+    public void setTimeEnd(LocalTime timeEnd) {
         this.timeEnd = timeEnd;
     }
 

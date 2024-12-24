@@ -3,6 +3,7 @@ package bg.tu_varna.sit.commands.event;
 import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
+import bg.tu_varna.sit.util.LocalTimeAdapter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,8 +22,8 @@ public class ChangeCommand implements Command {
     @Override
     public void execute() {
         // Step 1: Get user input for date and timeStart
-        String date = promptForDate();
-        String timeStart = promptForTimeStart();
+        LocalDate date = promptForDate();
+        LocalTime timeStart = promptForTimeStart();
 
         // Step 2: Find the event by date and timeStart
         Optional<Event> eventToChange = eventService.findEventByDateAndTimeStart(date, timeStart);
@@ -62,19 +63,19 @@ public class ChangeCommand implements Command {
 //        }
 
         // Step 8: Perform the change
-        changeEvent(eventToChange.get(), option, newValue);
+        //changeEvent(eventToChange.get(), option, newValue);
         System.out.println("Event updated successfully.");
 
     }
 
-    private String promptForDate() {
+    private LocalDate promptForDate() {
         System.out.print("Enter the event date (yyyy-mm-dd): ");
-        return scanner.nextLine();
+        return LocalDate.parse(scanner.nextLine());
     }
 
-    private String promptForTimeStart() {
+    private LocalTime promptForTimeStart() {
         System.out.print("Enter the event start time (hh:mm): ");
-        return scanner.nextLine();
+        return LocalTime.parse(scanner.nextLine());
     }
 
     private String promptForOption() {
@@ -121,26 +122,26 @@ public class ChangeCommand implements Command {
 
 
 
-    private void changeEvent(Event event, String option, String newValue) {
-        // Apply the change based on the option selected
-        switch (option) {
-            case "date":
-                event.setDate(newValue); // Change date
-                break;
-            case "timeStart":
-                event.setTimeStart(newValue); // Change start time
-                break;
-            case "timeEnd":
-                event.setTimeEnd(newValue); // Change end time
-                break;
-            case "title":
-                event.setTitle(newValue); // Change title
-                break;
-            case "description":
-                event.setDescription(newValue); // Change description
-                break;
-        }
-    }
+//    private void changeEvent(Event event, String option, String newValue) {
+//        // Apply the change based on the option selected
+//        switch (option) {
+//            case "date":
+//                event.setDate(newValue); // Change date
+//                break;
+//            case "timeStart":
+//                event.setTimeStart(newValue); // Change start time
+//                break;
+//            case "timeEnd":
+//                event.setTimeEnd(newValue); // Change end time
+//                break;
+//            case "title":
+//                event.setTitle(newValue); // Change title
+//                break;
+//            case "description":
+//                event.setDescription(newValue); // Change description
+//                break;
+//        }
+//    }
 }
 
 /*

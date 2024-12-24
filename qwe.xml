@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
     <event>
-        <date>2024-12-23</date>
-        <description>Important team meeting</description>
-        <timeEnd>11:00</timeEnd>
+        <date>2024-12-25</date>
+        <description>Annual holiday celebration with food and music.</description>
+        <timeEnd>22:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Christmas Party</title>
+    </event>
+    <event>
+        <date>2024-12-31</date>
+        <description>Join us for a spectacular New Year's Eve countdown!</description>
+        <timeEnd>00:30</timeEnd>
+        <timeStart>23:30</timeStart>
+        <title>New Year Countdown</title>
+    </event>
+    <event>
+        <date>2024-12-15</date>
+        <description>Discussion of the quarterly report.</description>
+        <timeEnd>10:00</timeEnd>
+        <timeStart>09:00</timeStart>
+        <title>Team Meeting</title>
+    </event>
+    <event>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>10:30</timeEnd>
         <timeStart>10:00</timeStart>
-        <title>Meeting</title>
+        <title>neshto</title>
     </event>
     <event>
-        <date>4</date>
-        <description>4</description>
-        <timeEnd>4</timeEnd>
-        <timeStart>4</timeStart>
-        <title>4</title>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>15:00</timeEnd>
+        <timeStart>14:30</timeStart>
+        <title>neshto</title>
     </event>
     <event>
-        <date>7</date>
-        <description>7</description>
-        <timeEnd>7</timeEnd>
-        <timeStart>7</timeStart>
-        <title>7</title>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>16:30</timeEnd>
+        <timeStart>15:00</timeStart>
+        <title>neshto</title>
     </event>
     <event>
-        <date>95</date>
-        <description>95</description>
-        <timeEnd>95</timeEnd>
-        <timeStart>95</timeStart>
-        <title>95</title>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>19:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>neshto</title>
     </event>
 </events>
