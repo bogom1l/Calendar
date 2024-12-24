@@ -4,7 +4,7 @@ import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.service.EventService;
 
 public class CloseCommand implements Command {
-    private EventService eventService;
+    private final EventService eventService;
 
     public CloseCommand(EventService eventService) {
         this.eventService = eventService;

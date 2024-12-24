@@ -4,7 +4,7 @@ import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.service.EventService;
 
 public class SaveCommand implements Command {
-    private EventService eventService;
+    private final EventService eventService;
 
     public SaveCommand(EventService eventService) {
         this.eventService = eventService;
