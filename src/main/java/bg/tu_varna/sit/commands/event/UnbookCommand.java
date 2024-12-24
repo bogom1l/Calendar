@@ -1,8 +1,10 @@
 package bg.tu_varna.sit.commands.event;
 
 import bg.tu_varna.sit.commands.contracts.Command;
+import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class UnbookCommand implements Command {
@@ -16,13 +18,27 @@ public class UnbookCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.print("Enter the title of the event to unbook: ");
-        String title = scanner.nextLine();
+        String date = promptForDate();
+        String timeStart = promptForTime("start");
+        String timeEnd = promptForTime("end");
 
-        if (eventService.unbookEvent(title)) {
+        Optional<Event> eventToRemove = eventService.findEventByDateAndTimeStartAndTimeEnd(date, timeStart, timeEnd);
+
+        if (eventToRemove.isPresent()) {
+            eventService.unbookEvent(eventToRemove.get());
             System.out.println("Event unbooked successfully.");
         } else {
             System.out.println("Event not found.");
         }
+    }
+
+    private String promptForDate() {
+        System.out.print("Enter the event date (yyyy-mm-dd): ");
+        return scanner.nextLine();
+    }
+
+    private String promptForTime(String timeType) {
+        System.out.print("Enter the event " + timeType + " time (hh:mm): ");
+        return scanner.nextLine();
     }
 }

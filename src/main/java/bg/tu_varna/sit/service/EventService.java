@@ -7,7 +7,9 @@ import jakarta.xml.bind.JAXBException;
 
 import java.io.File;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 public class EventService {
     private EventsWrapper eventsWrapper;
@@ -66,18 +68,16 @@ public class EventService {
         return this.eventsWrapper.getEvents().add(event);
     }
 
-    public boolean unbookEvent(String title) {
-        List<Event> events = this.eventsWrapper.getEvents().stream()
-                .filter(e -> e.getTitle().equalsIgnoreCase(title))
-                .toList();
+    public Optional<Event> findEventByDateAndTimeStartAndTimeEnd(String date, String timeStart, String timeEnd) {
+        return this.eventsWrapper.getEvents().stream()
+                .filter(e -> e.getDate().equals(date) &&
+                        e.getTimeStart().equals(timeStart) &&
+                        e.getTimeEnd().equals(timeEnd))
+                .findFirst();
+    }
 
-        if (events.isEmpty()) {
-            return false;
-        }
-
-        this.eventsWrapper.getEvents().removeAll(events);
-
-        return true;
+    public void unbookEvent(Event event) {
+        this.eventsWrapper.getEvents().remove(event);
     }
 
     public List<Event> listAllEvents() {
@@ -88,7 +88,8 @@ public class EventService {
         return this.eventsWrapper.getEvents().stream()
                 .filter(e -> e.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) ||
                         e.getDescription().contains(searchTerm))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
+
 
 }

@@ -38,37 +38,37 @@ public class UserInputHandler {
             String choice = scanner.nextLine();
 
             // Allow open and exit without check
-            if (!eventService.isCalendarOpen() && !choice.equals("1") && !choice.equals("9")) {
+            if (!eventService.isCalendarOpen() && !choice.equals("open") && !choice.equals("exit")) {
                 System.out.println("No calendar file is currently open. Please open a file first.");
                 continue;
             }
 
             switch (choice) {
-                case "1":
+                case "open":
                     openCommand.execute();
                     break;
-                case "2":
+                case "save":
                     saveCommand.execute();
                     break;
-                case "3":
+                case "saveas":
                     saveAsCommand.execute();
                     break;
-                case "4":
+                case "close":
                     closeCommand.execute();
                     break;
-                case "5":
+                case "book":
                     bookEventCommand.execute();
                     break;
-                case "6":
+                case "unbook":
                     unbookEventCommand.execute();
                     break;
-                case "7":
+                case "listall":
                     listAllEventsCommand.execute();
                     break;
-                case "8":
+                case "find":
                     findEventCommand.execute();
                     break;
-                case "9":
+                case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
                     return;
@@ -81,17 +81,17 @@ public class UserInputHandler {
     private void printMenu() {
         System.out.println("\nPlease select an operation:");
         if (!eventService.isCalendarOpen()) {
-            System.out.println("1. Open calendar");
-            System.out.println("9. Exit");
+            System.out.println("open - Open calendar");
+            System.out.println("exit - Exit");
         } else {
-            System.out.println("2. Save calendar");
-            System.out.println("3. Save calendar as");
-            System.out.println("4. Close calendar");
-            System.out.println("5. Book event");
-            System.out.println("6. Unbook event");
-            System.out.println("7. List all events");
-            System.out.println("8. Find event");
-            System.out.println("9. Exit");
+            System.out.println("save - Save calendar");
+            System.out.println("saveas - Save calendar as");
+            System.out.println("close - Close calendar");
+            System.out.println("book - Book event");
+            System.out.println("unbook - Unbook event");
+            System.out.println("listall - List all events");
+            System.out.println("find - Find event");
+            System.out.println("exit - Exit");
         }
     }
 }
