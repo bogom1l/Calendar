@@ -29,6 +29,7 @@ public class UserInputHandler {
         Command listAllEventsCommand = new ListAllCommand(eventService);
         Command findEventCommand = new FindCommand(eventService, scanner);
         Command agendaEventCommand = new AgendaCommand(eventService, scanner);
+        Command changeEventCommand = new ChangeCommand(eventService, scanner);
 
         while (true) {
             printMenu();
@@ -69,6 +70,9 @@ public class UserInputHandler {
                 case "agenda":
                     agendaEventCommand.execute();
                     break;
+                case "change":
+                    changeEventCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -93,6 +97,7 @@ public class UserInputHandler {
             System.out.println("listall - List all events");
             System.out.println("find - Find event");
             System.out.println("agenda - List all events for a date");
+            System.out.println("change - Change event");
             System.out.println("exit - Exit");
         }
     }
