@@ -4,6 +4,8 @@ import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -18,9 +20,9 @@ public class UnbookCommand implements Command {
 
     @Override
     public void execute() {
-        String date = promptForDate();
-        String timeStart = promptForTime("start");
-        String timeEnd = promptForTime("end");
+        LocalDate date = promptForDate();
+        LocalTime timeStart = promptForTime("start");
+        LocalTime timeEnd = promptForTime("end");
 
         Optional<Event> eventToRemove = eventService.findEventByDateAndTimeStartAndTimeEnd(date, timeStart, timeEnd);
 
@@ -32,13 +34,13 @@ public class UnbookCommand implements Command {
         }
     }
 
-    private String promptForDate() {
+    private LocalDate promptForDate() {
         System.out.print("Enter the event date (yyyy-mm-dd): ");
-        return scanner.nextLine();
+        return LocalDate.parse(scanner.nextLine());
     }
 
-    private String promptForTime(String timeType) {
+    private LocalTime promptForTime(String timeType) {
         System.out.print("Enter the event " + timeType + " time (hh:mm): ");
-        return scanner.nextLine();
+        return LocalTime.parse(scanner.nextLine());
     }
 }

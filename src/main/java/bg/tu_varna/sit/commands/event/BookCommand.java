@@ -4,6 +4,8 @@ import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class BookCommand implements Command {
@@ -33,13 +35,13 @@ public class BookCommand implements Command {
         String title = scanner.nextLine();
 
         System.out.print("Date (YYYY-MM-DD): ");
-        String date = scanner.nextLine();
+        LocalDate date = LocalDate.parse(scanner.nextLine());
 
         System.out.print("Start Time (HH:MM): ");
-        String timeStart = scanner.nextLine();
+        LocalTime timeStart = LocalTime.parse(scanner.nextLine());
 
         System.out.print("End Time (HH:MM): ");
-        String timeEnd = scanner.nextLine();
+        LocalTime timeEnd = LocalTime.parse(scanner.nextLine());
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
