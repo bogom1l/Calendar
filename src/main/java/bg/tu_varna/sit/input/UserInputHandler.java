@@ -11,7 +11,6 @@ import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveCommand;
 import bg.tu_varna.sit.service.EventService;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class UserInputHandler {
@@ -34,16 +33,7 @@ public class UserInputHandler {
         Command findEventCommand = new FindCommand(eventService, scanner);
 
         while (true) {
-            System.out.println("\nPlease select an operation:");
-            System.out.println("1. Open calendar");
-            System.out.println("2. Save calendar");
-            System.out.println("3. Save calendar as");
-            System.out.println("4. Close calendar");
-            System.out.println("5. Book event");
-            System.out.println("6. Unbook event");
-            System.out.println("7. List all events");
-            System.out.println("8. Find event");
-            System.out.println("9. Exit");
+            printMenu();
 
             String choice = scanner.nextLine();
 
@@ -85,6 +75,23 @@ public class UserInputHandler {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
+        }
+    }
+
+    private void printMenu() {
+        System.out.println("\nPlease select an operation:");
+        if (!eventService.isCalendarOpen()) {
+            System.out.println("1. Open calendar");
+            System.out.println("9. Exit");
+        } else {
+            System.out.println("2. Save calendar");
+            System.out.println("3. Save calendar as");
+            System.out.println("4. Close calendar");
+            System.out.println("5. Book event");
+            System.out.println("6. Unbook event");
+            System.out.println("7. List all events");
+            System.out.println("8. Find event");
+            System.out.println("9. Exit");
         }
     }
 }

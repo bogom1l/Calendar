@@ -17,6 +17,16 @@ public class BookCommand implements Command {
 
     @Override
     public void execute() {
+        Event event = createEvent();
+
+        if (eventService.bookEvent(event)) {
+            System.out.println("Event booked successfully.");
+        } else {
+            System.out.println("Failed to book event.");
+        }
+    }
+
+    private Event createEvent() {
         System.out.println("Enter event details:");
 
         System.out.print("Title: ");
@@ -34,13 +44,8 @@ public class BookCommand implements Command {
         System.out.print("Description: ");
         String description = scanner.nextLine();
 
-        Event event = new Event(title, date, timeStart, timeEnd, description);
-
-        if (eventService.bookEvent(event)) {
-            System.out.println("Event booked successfully.");
-        } else {
-            System.out.println("Failed to book event.");
-        }
+        return new Event(title, date, timeStart, timeEnd, description);
     }
+
 }
 

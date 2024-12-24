@@ -2,12 +2,13 @@ package bg.tu_varna.sit.commands.eventswrapper;
 
 import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.service.EventService;
+
 import java.io.File;
 import java.util.Scanner;
 
 public class OpenCommand implements Command {
-    private EventService eventService;
-    private Scanner scanner;
+    private final EventService eventService;
+    private final Scanner scanner;
 
     public OpenCommand(EventService eventService, Scanner scanner) {
         this.eventService = eventService;
@@ -16,6 +17,11 @@ public class OpenCommand implements Command {
 
     @Override
     public void execute() {
+        if (isCalendarAlreadyOpened()) {
+            System.out.println("A calendar is already open. Please close the current one before opening a new one.");
+            return;
+        }
+
         String fileName = promptForFileName();
 
         if (!isValidFileName(fileName)) {
@@ -27,12 +33,16 @@ public class OpenCommand implements Command {
         openCalendar(file);
     }
 
+    private boolean isCalendarAlreadyOpened() {
+        return eventService.isCalendarOpen();
+    }
+
     private String promptForFileName() {
         System.out.print("Enter the calendar file name to open (e.g., 'calendar.xml'): ");
         return scanner.nextLine();
     }
 
-    private boolean isValidFileName(String fileName){
+    private boolean isValidFileName(String fileName) {
         return fileName.endsWith(".xml");
     }
 
