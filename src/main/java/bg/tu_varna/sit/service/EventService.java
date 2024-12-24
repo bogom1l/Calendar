@@ -108,23 +108,71 @@ public class EventService {
                 .collect(toList());
     }
 
-    //todo ?
-//    public boolean isConflict(LocalDate date, LocalTime timeStart, LocalTime timeEnd) {
-//        // Loop through all events to find conflicts on the same date
-//        for (Event event : this.eventsWrapper.getEvents()) {
-//            // Check if the event is on the same date
-//            if (event.getDate().equals(date)) {
-//                LocalTime existingTimeStart = LocalTime.parse(event.getTimeStart());
-//                LocalTime existingTimeEnd = LocalTime.parse(event.getTimeEnd());
-//
-//                // Check if the new event time range overlaps with an existing event
-//                if (timeStart.isBefore(existingTimeEnd) && timeEnd.isAfter(existingTimeStart)) {
-//                    return true; // Conflict found
-//                }
-//            }
-//        }
-//        return false; // No conflict
-//    }
+    public boolean updateEventDate(Event event, LocalDate newDate) {
+        if (newDate != null) {
+            event.setDate(newDate);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to update the event's start time
+    public boolean updateEventStartTime(Event event, LocalTime newTimeStart) {
+        if (newTimeStart != null) {
+            event.setTimeStart(newTimeStart);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to update the event's end time
+    public boolean updateEventEndTime(Event event, LocalTime newTimeEnd) {
+        if (newTimeEnd != null) {
+            event.setTimeEnd(newTimeEnd);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to update the event's title
+    public boolean updateEventTitle(Event event, String newTitle) {
+        if (newTitle != null && !newTitle.trim().isEmpty()) {
+            event.setTitle(newTitle);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to update the event's description
+    public boolean updateEventDescription(Event event, String newDescription) {
+        if (newDescription != null && !newDescription.trim().isEmpty()) {
+            event.setDescription(newDescription);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isTimeRangeAvailableForDate(LocalDate date, LocalTime newTimeStart, LocalTime newTimeEnd) {
+        return this.eventsWrapper.getEvents().stream()
+                .filter(event -> event.getDate().equals(date))  // Only check events for the same date
+                .noneMatch(event ->
+                        (newTimeStart.isBefore(event.getTimeEnd()) && newTimeStart.isAfter(event.getTimeStart())) ||  // New start time overlaps with an event
+                                (newTimeEnd.isBefore(event.getTimeEnd()) && newTimeEnd.isAfter(event.getTimeStart())) ||    // New end time overlaps with an event
+                                (newTimeStart.isBefore(event.getTimeStart()) && newTimeEnd.isAfter(event.getTimeEnd()))    // New range fully overlaps with an event
+                );
+    }
+
+    public boolean isTimeStartAvailable(LocalDate date, LocalTime newTimeStart) {
+        return this.eventsWrapper.getEvents().stream()
+                .filter(event -> event.getDate().equals(date))  // Only check events for the same date
+                .noneMatch(event -> newTimeStart.isBefore(event.getTimeEnd()) && newTimeStart.isAfter(event.getTimeStart()));
+    }
+
+    public boolean isTimeEndAvailable(LocalDate date, LocalTime newTimeEnd) {
+        return this.eventsWrapper.getEvents().stream()
+                .filter(event -> event.getDate().equals(date))  // Only check events for the same date
+                .noneMatch(event -> newTimeEnd.isBefore(event.getTimeEnd()) && newTimeEnd.isAfter(event.getTimeStart()));
+    }
 
 
 }

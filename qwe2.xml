@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<events>
+    <event>
+        <date>2024-12-25</date>
+        <description>Annual holiday celebration with food and music.</description>
+        <timeEnd>22:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Christmas Party</title>
+    </event>
+    <event>
+        <date>2024-12-31</date>
+        <description>Join us for a spectacular New Year's Eve countdown!</description>
+        <timeEnd>00:30</timeEnd>
+        <timeStart>23:30</timeStart>
+        <title>New Year Countdown</title>
+    </event>
+    <event>
+        <date>2024-12-15</date>
+        <description>Discussion of the quarterly report.</description>
+        <timeEnd>10:00</timeEnd>
+        <timeStart>09:00</timeStart>
+        <title>Team Meeting</title>
+    </event>
+    <event>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>10:30</timeEnd>
+        <timeStart>10:00</timeStart>
+        <title>neshto</title>
+    </event>
+    <event>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>15:00</timeEnd>
+        <timeStart>14:30</timeStart>
+        <title>neshto</title>
+    </event>
+    <event>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>16:30</timeEnd>
+        <timeStart>15:00</timeStart>
+        <title>neshto</title>
+    </event>
+    <event>
+        <date>2010-10-10</date>
+        <description>neshto2</description>
+        <timeEnd>19:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>neshto</title>
+    </event>
+    <event>
+        <date>2014-12-12</date>
+        <description>descr1</description>
+        <timeEnd>14:48</timeEnd>
+        <timeStart>14:43</timeStart>
+        <title>title</title>
+    </event>
+    <event>
+        <date>2019-04-14</date>
+        <description>deskription</description>
+        <timeEnd>05:00</timeEnd>
+        <timeStart>04:50</timeStart>
+        <title>okay</title>
+    </event>
+    <event>
+        <date>2019-04-14</date>
+        <description>dede</description>
+        <timeEnd>04:45</timeEnd>
+        <timeStart>04:33</timeStart>
+        <title>wewe</title>
+    </event>
+    <event>
+        <date>2022-02-22</date>
+        <description>tyty</description>
+        <timeEnd>14:00</timeEnd>
+        <timeStart>16:00</timeStart>
+        <title>tyty</title>
+    </event>
+    <event>
+        <date>2022-02-25</date>
+        <description>uuuu</description>
+        <timeEnd>14:30</timeEnd>
+        <timeStart>15:30</timeStart>
+        <title>uuuu</title>
+    </event>
+</events>

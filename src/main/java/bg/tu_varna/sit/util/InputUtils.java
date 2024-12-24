@@ -2,6 +2,7 @@ package bg.tu_varna.sit.util;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class InputUtils {
@@ -33,5 +34,21 @@ public class InputUtils {
         return time;
     }
 
+    public static boolean isValidDate(String date) {
+        try {
+            LocalDate.parse(date);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
 
+    public static boolean isValidTime(String time) {
+        try {
+            LocalTime.parse(time);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
 }
