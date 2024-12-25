@@ -96,6 +96,15 @@ public class EventService {
 
     //todo: sort by date then by hour
     public List<Event> listAllEvents() {
+        List<Event> events = this.eventsWrapper.getEvents();
+
+        events.sort(Comparator.comparing(Event::getDate)
+                .thenComparing(Event::getTimeStart));
+
+        return events;
+    }
+
+    public List<Event> getAllEvents() {
         return this.eventsWrapper.getEvents();
     }
 

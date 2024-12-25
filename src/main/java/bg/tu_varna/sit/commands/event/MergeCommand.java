@@ -7,6 +7,7 @@ import bg.tu_varna.sit.service.EventService;
 import bg.tu_varna.sit.util.InputUtils;
 import bg.tu_varna.sit.util.JAXBParser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MergeCommand implements Command {
@@ -31,6 +32,9 @@ public class MergeCommand implements Command {
         List<Event> otherEvents = otherEventsWrapper.getEvents();
         List<Event> currentEvents = eventService.getEventsWrapper().getEvents();
 
+        // List to collect new events and conflicting decisions
+        List<Event> eventsToAdd = new ArrayList<>();
+
         for (Event otherEvent : otherEvents) {
             boolean conflictFound = false;
 
@@ -42,26 +46,36 @@ public class MergeCommand implements Command {
                     System.out.println("Current Event: " + currentEvent);
                     System.out.println("Other Event: " + otherEvent);
 
-                    System.out.println("Choose which event to keep:");
-                    System.out.println("1. Current Event");
-                    System.out.println("2. Other Event");
-                    System.out.println("3. Skip Both");
+                    // Ask user to resolve conflict
+                    int choice = 0;
+                    while (choice < 1 || choice > 3) {
+                        System.out.println("Choose which event to keep:");
+                        System.out.println("1. Current Event");
+                        System.out.println("2. Other Event");
+                        System.out.println("3. Skip Both");
 
-                    int choice = InputUtils.readInt("Enter your choice (1-3): ");
+                        choice = InputUtils.readInt("Enter your choice (1-3): ");
+                    }
+
                     switch (choice) {
                         case 1 -> {
-                            // Keep current event, skip adding other event
+                            // Keep the current event, skip adding other event
                             System.out.println("Kept the current event.");
+                            // eventsToAdd.add(currentEvent);
+                            // No need to add currentEvent again since it's already in currentEvents
                         }
                         case 2 -> {
                             // Replace current event with the other event
-                            currentEvents.remove(currentEvent);
-                            currentEvents.add(otherEvent);
                             System.out.println("Replaced with the other event.");
+                            // todo ?
+                            currentEvents.remove(currentEvent);  // Optional: depending on whether you want to delete or overwrite
+                            eventsToAdd.add(otherEvent); // Add the other event instead
                         }
                         case 3 -> {
                             // Skip both events
                             System.out.println("Skipped both events.");
+                            // todo ?
+                            currentEvents.remove(currentEvent);  // Optional: depending on whether you want to delete or overwrite
                         }
                         default -> System.out.println("Invalid choice. Skipping...");
                     }
@@ -70,9 +84,12 @@ public class MergeCommand implements Command {
             }
 
             if (!conflictFound) {
-                currentEvents.add(otherEvent);
+                eventsToAdd.add(otherEvent); // No conflict, simply add the event
             }
         }
+
+        // Add all events that were decided upon
+        currentEvents.addAll(eventsToAdd);
 
         System.out.println("Merge completed.");
     }
