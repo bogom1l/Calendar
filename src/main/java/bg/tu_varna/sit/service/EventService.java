@@ -175,28 +175,6 @@ public class EventService {
         return this.eventsWrapper;
     }
 
-//    // In EventService.java
-//    public int getBookedHours(LocalDate date) {
-//        return eventsWrapper.getEvents().stream()
-//                .filter(event -> event.getDate().equals(date)) // Check if event is on this date
-//                .mapToInt(event -> {
-//                    long duration = Duration.between(event.getTimeStart(), event.getTimeEnd()).toHours();
-//                    return (int) duration;
-//                })
-//                .sum();
-//    }
-
-//    // In EventService.java
-//    public double getBookedHours(LocalDate date) {
-//        return eventsWrapper.getEvents().stream()
-//                .filter(event -> event.getDate().equals(date)) // Check if event is on this date
-//                .mapToDouble(event -> {
-//                    long durationInMinutes = Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes();
-//                    return durationInMinutes / 60.0; // Convert minutes to hours (keep the fractional part)
-//                })
-//                .sum();
-//    }
-
     private long getBookedMinutes(LocalDate date) {
         return eventsWrapper.getEvents().stream()
                 .filter(event -> event.getDate().equals(date)) // Filter events by the date
@@ -204,23 +182,32 @@ public class EventService {
                 .sum();
     }
 
-    // Method to get all the busy days within a range
-    public List<Map.Entry<LocalDate, Long>> getBusyDaysInRange(LocalDate from, LocalDate to) {
-        Map<LocalDate, Long> bookedMinutesMap = new HashMap<>();
+    //todo make this method more clean.
+    // Method to get all the busy days within a range, including event details
+    public List<Map.Entry<LocalDate, Map.Entry<Long, List<Event>>>> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to) {
+        Map<LocalDate, Map.Entry<Long, List<Event>>> bookedMinutesMap = new HashMap<>();
 
-        // Iterate through all dates in the range and calculate booked minutes
+        // Iterate through all dates in the range and calculate booked minutes and events
         LocalDate currentDate = from;
         while (!currentDate.isAfter(to)) {
-            long bookedMinutes = getBookedMinutes(currentDate);
+            LocalDate finalCurrentDate = currentDate;
+            List<Event> eventsForDay = eventsWrapper.getEvents().stream()
+                    .filter(event -> event.getDate().equals(finalCurrentDate)) // Filter events for this date
+                    .toList();
+
+            long bookedMinutes = eventsForDay.stream()
+                    .mapToLong(event -> Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes()) // Calculate the total minutes
+                    .sum();
+
             if (bookedMinutes > 0) {
-                bookedMinutesMap.put(currentDate, bookedMinutes); // Only add days with bookings
+                bookedMinutesMap.put(currentDate, new AbstractMap.SimpleEntry<>(bookedMinutes, eventsForDay));
             }
             currentDate = currentDate.plusDays(1);
         }
 
         // Sort by booked minutes in descending order
         return bookedMinutesMap.entrySet().stream()
-                .sorted((entry1, entry2) -> Long.compare(entry2.getValue(), entry1.getValue()))
+                .sorted((entry1, entry2) -> Long.compare(entry2.getValue().getKey(), entry1.getValue().getKey()))
                 .toList();
     }
 }
