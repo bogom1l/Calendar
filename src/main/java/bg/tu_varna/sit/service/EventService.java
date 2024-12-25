@@ -8,11 +8,7 @@ import jakarta.xml.bind.JAXBException;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
+import java.util.*;
 
 public class EventService {
     private EventsWrapper eventsWrapper;
@@ -172,6 +168,10 @@ public class EventService {
         return this.eventsWrapper.getEvents().stream()
                 .filter(event -> event.getDate().equals(date))  // Only check events for the same date
                 .noneMatch(event -> newTimeEnd.isBefore(event.getTimeEnd()) && newTimeEnd.isAfter(event.getTimeStart()));
+    }
+
+    public EventsWrapper getEventsWrapper() {
+        return this.eventsWrapper;
     }
 
 

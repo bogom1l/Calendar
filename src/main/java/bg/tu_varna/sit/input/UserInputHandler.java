@@ -7,16 +7,19 @@ import bg.tu_varna.sit.commands.eventswrapper.OpenCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveCommand;
 import bg.tu_varna.sit.service.EventService;
+import bg.tu_varna.sit.service.HolidayService;
 
 import java.util.Scanner;
 
 public class UserInputHandler {
     private final Scanner scanner;
     private final EventService eventService;
+    private final HolidayService holidayService;
 
     public UserInputHandler() {
         this.scanner = new Scanner(System.in);
         this.eventService = new EventService();
+        this.holidayService = new HolidayService();
     }
 
     public void start() {
@@ -24,12 +27,13 @@ public class UserInputHandler {
         Command saveCommand = new SaveCommand(eventService);
         Command saveAsCommand = new SaveAsCommand(eventService, scanner);
         Command closeCommand = new CloseCommand(eventService);
-        Command bookEventCommand = new BookCommand(eventService, scanner);
+        Command bookEventCommand = new BookCommand(eventService, scanner, holidayService);
         Command unbookEventCommand = new UnbookCommand(eventService, scanner);
         Command listAllEventsCommand = new ListAllCommand(eventService);
         Command agendaEventCommand = new AgendaCommand(eventService, scanner);
         Command changeEventCommand = new ChangeCommand(eventService, scanner);
         Command findEventCommand = new FindCommand(eventService, scanner);
+        Command holidayCommand = new HolidayCommand(eventService, holidayService);
 
         while (true) {
             printMenu();
@@ -73,6 +77,9 @@ public class UserInputHandler {
                 case "change":
                     changeEventCommand.execute();
                     break;
+                case "holiday":
+                    holidayCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -98,6 +105,7 @@ public class UserInputHandler {
             System.out.println("find - Find event");
             System.out.println("agenda - List all events for a date");
             System.out.println("change - Change event");
+            System.out.println("holiday - Mark date as holiday");
             System.out.println("exit - Exit");
         }
     }
