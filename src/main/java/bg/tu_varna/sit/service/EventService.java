@@ -6,6 +6,7 @@ import bg.tu_varna.sit.util.JAXBParser;
 import jakarta.xml.bind.JAXBException;
 
 import java.io.File;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -174,5 +175,52 @@ public class EventService {
         return this.eventsWrapper;
     }
 
+//    // In EventService.java
+//    public int getBookedHours(LocalDate date) {
+//        return eventsWrapper.getEvents().stream()
+//                .filter(event -> event.getDate().equals(date)) // Check if event is on this date
+//                .mapToInt(event -> {
+//                    long duration = Duration.between(event.getTimeStart(), event.getTimeEnd()).toHours();
+//                    return (int) duration;
+//                })
+//                .sum();
+//    }
 
+//    // In EventService.java
+//    public double getBookedHours(LocalDate date) {
+//        return eventsWrapper.getEvents().stream()
+//                .filter(event -> event.getDate().equals(date)) // Check if event is on this date
+//                .mapToDouble(event -> {
+//                    long durationInMinutes = Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes();
+//                    return durationInMinutes / 60.0; // Convert minutes to hours (keep the fractional part)
+//                })
+//                .sum();
+//    }
+
+    private long getBookedMinutes(LocalDate date) {
+        return eventsWrapper.getEvents().stream()
+                .filter(event -> event.getDate().equals(date)) // Filter events by the date
+                .mapToLong(event -> Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes()) // Calculate the minutes for each event
+                .sum();
+    }
+
+    // Method to get all the busy days within a range
+    public List<Map.Entry<LocalDate, Long>> getBusyDaysInRange(LocalDate from, LocalDate to) {
+        Map<LocalDate, Long> bookedMinutesMap = new HashMap<>();
+
+        // Iterate through all dates in the range and calculate booked minutes
+        LocalDate currentDate = from;
+        while (!currentDate.isAfter(to)) {
+            long bookedMinutes = getBookedMinutes(currentDate);
+            if (bookedMinutes > 0) {
+                bookedMinutesMap.put(currentDate, bookedMinutes); // Only add days with bookings
+            }
+            currentDate = currentDate.plusDays(1);
+        }
+
+        // Sort by booked minutes in descending order
+        return bookedMinutesMap.entrySet().stream()
+                .sorted((entry1, entry2) -> Long.compare(entry2.getValue(), entry1.getValue()))
+                .toList();
+    }
 }

@@ -34,6 +34,7 @@ public class UserInputHandler {
         Command changeEventCommand = new ChangeCommand(eventService, scanner);
         Command findEventCommand = new FindCommand(eventService, scanner);
         Command holidayCommand = new HolidayCommand(eventService, holidayService);
+        Command busydaysCommand = new BusyDaysCommand(eventService);
 
         while (true) {
             printMenu();
@@ -79,6 +80,9 @@ public class UserInputHandler {
                     break;
                 case "holiday":
                     holidayCommand.execute();
+                    break;
+                case "busydays":
+                    busydaysCommand.execute();
                     break;
                 case "exit":
                     System.out.println("Exiting...");
