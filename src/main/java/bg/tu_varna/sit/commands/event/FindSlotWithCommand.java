@@ -3,6 +3,8 @@ package bg.tu_varna.sit.commands.event;
 import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.model.EventsWrapper;
+import bg.tu_varna.sit.model.Holiday;
+import bg.tu_varna.sit.model.HolidaysWrapper;
 import bg.tu_varna.sit.service.EventService;
 import bg.tu_varna.sit.util.InputUtils;
 import bg.tu_varna.sit.util.JAXBParser;
@@ -10,9 +12,7 @@ import bg.tu_varna.sit.util.JAXBParser;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class FindSlotWithCommand implements Command {
     private final EventService eventService;
@@ -27,23 +27,63 @@ public class FindSlotWithCommand implements Command {
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
         String calendarFileName = InputUtils.readString("Enter the name of the other calendar (e.g., calendar.xml): ");
 
-        EventsWrapper otherEventsWrapper = loadOtherCalendar(calendarFileName);
+        // Load holidays from holidays.xml
+        Set<LocalDate> holidays = new HashSet<>();
+        try {
+            HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename("holidays.xml");
+            for (Holiday holiday : holidaysWrapper.getHolidays()) {
+                holidays.add(holiday.getDate());
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading holidays.xml: " + e.getMessage());
+            return;
+        }
+
+        EventsWrapper otherEventsWrapper;
+        try {
+            // Use the helper method to load the additional calendar
+            otherEventsWrapper = JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
+        } catch (Exception e) {
+            System.out.println("Error loading the specified calendar file: " + e.getMessage());
+            return;
+        }
 
         LocalDate currentDate = fromDate;
 
         while (true) {
+            // Skip holiday dates
+            if (holidays.contains(currentDate)) {
+                currentDate = currentDate.plusDays(1);
+                continue;
+            }
+
             List<Event> allEvents = new ArrayList<>();
             allEvents.addAll(eventService.getEventsByDate(currentDate));
             allEvents.addAll(eventService.getEventsByDate(currentDate, otherEventsWrapper));
+
+            // Map events to their calendar sources
+            List<String> eventSources = new ArrayList<>();
+            LocalDate finalCurrentDate = currentDate;
+            allEvents.forEach(event -> {
+                if (eventService.getEventsByDate(finalCurrentDate).contains(event)) {
+                    eventSources.add("Current Calendar");
+                } else {
+                    eventSources.add(calendarFileName);
+                }
+            });
 
             allEvents.sort(Comparator.comparing(Event::getTimeStart));
 
             LocalTime availableStart = LocalTime.of(8, 0);
             LocalTime availableEnd = LocalTime.of(17, 0);
 
-            for (Event event : allEvents) {
+            for (int i = 0; i < allEvents.size(); i++) {
+                Event event = allEvents.get(i);
+                String source = eventSources.get(i);
+
                 if (Duration.between(availableStart, event.getTimeStart()).toHours() >= hoursToFind) {
                     System.out.println("Available slot found: " + currentDate + " from " + availableStart);
+                    System.out.println("Calendar: " + source);
                     return;
                 }
                 availableStart = event.getTimeEnd();
@@ -51,20 +91,11 @@ public class FindSlotWithCommand implements Command {
 
             if (Duration.between(availableStart, availableEnd).toHours() >= hoursToFind) {
                 System.out.println("Available slot found: " + currentDate + " from " + availableStart);
+                System.out.println("Calendar: Current Calendar");
                 return;
             }
 
             currentDate = currentDate.plusDays(1);
         }
     }
-
-    private EventsWrapper loadOtherCalendar(String calendarFileName){
-        try {
-            return JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
-        } catch (Exception e) {
-            System.out.println("Error loading the specified calendar file: " + e.getMessage());
-            return null;
-        }
-    }
-
 }
