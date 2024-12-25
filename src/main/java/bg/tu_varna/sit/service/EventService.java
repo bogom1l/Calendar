@@ -101,11 +101,11 @@ public class EventService {
         return this.eventsWrapper.getEvents();
     }
 
-    public List<Event> findEvent(String searchTerm) {
+    public List<Event> findEventsByTitleOrDescription(String searchTerm) {
         return this.eventsWrapper.getEvents().stream()
-                .filter(e -> e.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) ||
-                        e.getDescription().contains(searchTerm))
-                .collect(toList());
+                .filter(event -> event.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        event.getDescription().toLowerCase().contains(searchTerm.toLowerCase()))
+                .toList();
     }
 
     public boolean updateEventDate(Event event, LocalDate newDate) {

@@ -27,9 +27,9 @@ public class UserInputHandler {
         Command bookEventCommand = new BookCommand(eventService, scanner);
         Command unbookEventCommand = new UnbookCommand(eventService, scanner);
         Command listAllEventsCommand = new ListAllCommand(eventService);
-        Command findEventCommand = new FindCommand(eventService, scanner);
         Command agendaEventCommand = new AgendaCommand(eventService, scanner);
         Command changeEventCommand = new ChangeCommand(eventService, scanner);
+        Command findEventCommand = new FindCommand(eventService, scanner);
 
         while (true) {
             printMenu();

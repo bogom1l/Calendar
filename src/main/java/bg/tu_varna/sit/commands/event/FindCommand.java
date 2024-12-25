@@ -1,8 +1,10 @@
 package bg.tu_varna.sit.commands.event;
 
 import bg.tu_varna.sit.commands.contracts.Command;
+import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.service.EventService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class FindCommand implements Command {
@@ -16,11 +18,16 @@ public class FindCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.print("Enter event title or date to search: ");
+        System.out.print("Enter the search term: ");
         String searchTerm = scanner.nextLine();
 
-        eventService.findEvent(searchTerm).forEach(event ->
-                System.out.println(event.toString())
-        );
+        List<Event> matchingEvents = eventService.findEventsByTitleOrDescription(searchTerm);
+
+        if (matchingEvents.isEmpty()) {
+            System.out.println("No events found containing the search term.");
+        } else {
+            System.out.println("Matching events:");
+            matchingEvents.forEach(System.out::println);
+        }
     }
 }
