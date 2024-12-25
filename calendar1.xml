@@ -1,0 +1,32 @@
+<events>
+    <event>
+        <title>Meeting with Team</title>
+        <date>2024-01-10</date>
+        <timeStart>10:00</timeStart>
+        <timeEnd>11:00</timeEnd>
+    </event>
+    <event>
+        <title>Client Presentation</title>
+        <date>2024-01-11</date>
+        <timeStart>14:00</timeStart>
+        <timeEnd>15:30</timeEnd>
+    </event>
+    <event>
+        <title>Weekly Planning</title>
+        <date>2024-01-12</date>
+        <timeStart>09:00</timeStart>
+        <timeEnd>10:00</timeEnd>
+    </event>
+    <event>
+        <title>Project Update</title>
+        <date>2024-01-13</date>
+        <timeStart>13:00</timeStart>
+        <timeEnd>14:30</timeEnd>
+    </event>
+    <event>
+        <title>Performance Review</title>
+        <date>2024-01-14</date>
+        <timeStart>16:00</timeStart>
+        <timeEnd>17:00</timeEnd>
+    </event>
+</events>

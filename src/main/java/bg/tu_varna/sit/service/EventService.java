@@ -94,6 +94,7 @@ public class EventService {
                 .toList();
     }
 
+    //todo: sort by date then by hour
     public List<Event> listAllEvents() {
         return this.eventsWrapper.getEvents();
     }

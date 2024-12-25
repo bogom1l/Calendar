@@ -40,6 +40,7 @@ public class UserInputHandler {
         Command busydaysCommand = new BusyDaysCommand(eventService);
         Command findslotCommand = new FindSlotCommand(eventService);
         Command findslotwithCommand = new FindSlotWithCommand(eventService);
+        Command mergeCommand = new MergeCommand(eventService);
 
         while (true) {
 
@@ -96,6 +97,9 @@ public class UserInputHandler {
                 case "findslotwith":
                     findslotwithCommand.execute();
                     break;
+                case "merge":
+                    mergeCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -125,6 +129,7 @@ public class UserInputHandler {
             System.out.println("busydays");
             System.out.println("findslot");
             System.out.println("findslotwith");
+            System.out.println("merge <calendar> - Merge calendar");
             System.out.println("exit - Exit");
         }
     }
