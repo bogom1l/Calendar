@@ -2,15 +2,16 @@ package bg.tu_varna.sit.commands.event;
 
 import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.model.Event;
+import bg.tu_varna.sit.model.Holiday;
+import bg.tu_varna.sit.model.HolidaysWrapper;
 import bg.tu_varna.sit.service.EventService;
 import bg.tu_varna.sit.util.InputUtils;
+import bg.tu_varna.sit.util.JAXBParser;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class FindSlotCommand implements Command {
     private final EventService eventService;
@@ -21,12 +22,30 @@ public class FindSlotCommand implements Command {
 
     @Override
     public void execute() {
+        // Load holidays from holidays.xml
+        Set<LocalDate> holidays = new HashSet<>();
+        try {
+            HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename("holidays.xml");
+            for (Holiday holiday : holidaysWrapper.getHolidays()) {
+                holidays.add(holiday.getDate());
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading holidays.xml: " + e.getMessage());
+            return;
+        }
+
         LocalDate fromDate = InputUtils.readLocalDate("Enter the starting date (yyyy-mm-dd): ");
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
 
         LocalDate currentDate = fromDate;
 
         while (true) {
+            // Skip holiday dates
+            if (holidays.contains(currentDate)) {
+                currentDate = currentDate.plusDays(1);
+                continue;
+            }
+
             // Get events for the current date
             List<Event> events = new ArrayList<>(eventService.getEventsByDate(currentDate)); // Ensure list is mutable
             events.sort(Comparator.comparing(Event::getTimeStart));

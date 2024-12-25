@@ -1,80 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
     <event>
-        <date>2024-12-25</date>
-        <description>Annual holiday celebration with food and music.</description>
-        <timeEnd>22:00</timeEnd>
-        <timeStart>18:00</timeStart>
-        <title>Christmas Party</title>
-    </event>
-    <event>
-        <date>2024-12-31</date>
-        <description>Join us for a spectacular New Year's Eve countdown!</description>
-        <timeEnd>00:30</timeEnd>
-        <timeStart>23:30</timeStart>
-        <title>New Year Countdown</title>
-    </event>
-    <event>
-        <date>2024-12-15</date>
-        <description>Discussion of the quarterly report.</description>
-        <timeEnd>10:00</timeEnd>
+        <name>Meeting with Team</name>
+        <date>2024-01-10</date>
         <timeStart>09:00</timeStart>
-        <title>Team Meeting</title>
-    </event>
-    <event>
-        <date>2010-10-10</date>
-        <description>neshto2</description>
         <timeEnd>10:30</timeEnd>
-        <timeStart>10:00</timeStart>
-        <title>neshto</title>
+        <description>Project planning meeting with the team.</description>
     </event>
     <event>
-        <date>2010-10-10</date>
-        <description>neshto2</description>
-        <timeEnd>15:00</timeEnd>
-        <timeStart>14:30</timeStart>
-        <title>neshto</title>
+        <name>Doctor Appointment</name>
+        <date>2024-01-10</date>
+        <timeStart>11:00</timeStart>
+        <timeEnd>11:45</timeEnd>
+        <description>Annual check-up appointment.</description>
     </event>
     <event>
-        <date>2010-10-10</date>
-        <description>neshto2</description>
-        <timeEnd>16:30</timeEnd>
-        <timeStart>15:00</timeStart>
-        <title>neshto</title>
+        <name>Lunch Break</name>
+        <date>2024-01-10</date>
+        <timeStart>12:00</timeStart>
+        <timeEnd>13:00</timeEnd>
+        <description>Lunch at a nearby restaurant.</description>
     </event>
     <event>
-        <date>2010-10-10</date>
-        <description>neshto2</description>
-        <timeEnd>19:00</timeEnd>
-        <timeStart>18:00</timeStart>
-        <title>neshto</title>
+        <name>Conference Call</name>
+        <date>2024-01-11</date>
+        <timeStart>14:00</timeStart>
+        <timeEnd>15:30</timeEnd>
+        <description>Monthly update with stakeholders.</description>
     </event>
     <event>
-        <date>2014-12-12</date>
-        <description>descr1</description>
-        <timeEnd>14:48</timeEnd>
-        <timeStart>14:43</timeStart>
-        <title>title</title>
-    </event>
-    <event>
-        <date>2019-04-14</date>
-        <description>deskription</description>
-        <timeEnd>04:44</timeEnd>
-        <timeStart>04:43</timeStart>
-        <title>ok</title>
-    </event>
-    <event>
-        <date>2040-04-04</date>
-        <description>descrrrrr</description>
-        <timeEnd>20:25</timeEnd>
-        <timeStart>20:20</timeStart>
-        <title>qqqq</title>
-    </event>
-    <event>
-        <date>2022-02-22</date>
-        <description>tyty</description>
-        <timeEnd>08:00</timeEnd>
-        <timeStart>09:00</timeStart>
-        <title>tyty</title>
+        <name>Gym Session</name>
+        <date>2024-01-11</date>
+        <timeStart>16:00</timeStart>
+        <timeEnd>17:00</timeEnd>
+        <description>Fitness training session.</description>
     </event>
 </events>
+
