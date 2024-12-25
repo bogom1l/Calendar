@@ -2,6 +2,7 @@ package bg.tu_varna.sit.commands.eventswrapper;
 
 import bg.tu_varna.sit.commands.contracts.Command;
 import bg.tu_varna.sit.service.EventService;
+import bg.tu_varna.sit.util.FileUtil;
 
 import java.io.File;
 import java.util.Scanner;
@@ -21,6 +22,8 @@ public class OpenCommand implements Command {
             System.out.println("A calendar is already open. Please close the current one before opening a new one.");
             return;
         }
+
+        FileUtil.printAllXmlFiles();
 
         String fileName = promptForFileName();
 

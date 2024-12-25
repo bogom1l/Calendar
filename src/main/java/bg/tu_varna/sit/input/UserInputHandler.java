@@ -8,7 +8,10 @@ import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveCommand;
 import bg.tu_varna.sit.service.EventService;
 import bg.tu_varna.sit.service.HolidayService;
+import bg.tu_varna.sit.util.FileUtil;
 
+import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInputHandler {
@@ -37,6 +40,7 @@ public class UserInputHandler {
         Command busydaysCommand = new BusyDaysCommand(eventService);
 
         while (true) {
+
             printMenu();
 
             String choice = scanner.nextLine();
