@@ -210,4 +210,15 @@ public class EventService {
                 .sorted((entry1, entry2) -> Long.compare(entry2.getValue().getKey(), entry1.getValue().getKey()))
                 .toList();
     }
+
+    public List<Event> getEventsByDate(LocalDate date) {
+        return eventsWrapper.getEvents()
+                .stream()
+                .filter(event -> event.getDate().equals(date))
+                .toList();
+    }
+
+
+
+
 }
