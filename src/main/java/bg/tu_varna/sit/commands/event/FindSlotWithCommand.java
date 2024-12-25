@@ -27,14 +27,7 @@ public class FindSlotWithCommand implements Command {
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
         String calendarFileName = InputUtils.readString("Enter the name of the other calendar (e.g., calendar.xml): ");
 
-        EventsWrapper otherEventsWrapper;
-        try {
-            // Use the helper method to load the additional calendar
-            otherEventsWrapper = JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
-        } catch (Exception e) {
-            System.out.println("Error loading the specified calendar file: " + e.getMessage());
-            return;
-        }
+        EventsWrapper otherEventsWrapper = loadOtherCalendar(calendarFileName);
 
         LocalDate currentDate = fromDate;
 
@@ -64,4 +57,14 @@ public class FindSlotWithCommand implements Command {
             currentDate = currentDate.plusDays(1);
         }
     }
+
+    private EventsWrapper loadOtherCalendar(String calendarFileName){
+        try {
+            return JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
+        } catch (Exception e) {
+            System.out.println("Error loading the specified calendar file: " + e.getMessage());
+            return null;
+        }
+    }
+
 }
