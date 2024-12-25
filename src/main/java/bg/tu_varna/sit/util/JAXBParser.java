@@ -39,4 +39,16 @@ public class JAXBParser {
         return (HolidaysWrapper) unmarshaller.unmarshal(file);
     }
 
+    public static EventsWrapper loadEventsFromXMLByFilename(String fileName) throws Exception {
+        JAXBContext context = JAXBContext.newInstance(EventsWrapper.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        File file = new File(System.getProperty("user.dir"), fileName);
+
+        if (!file.exists()) {
+            throw new Exception("File not found: " + fileName);
+        }
+
+        return (EventsWrapper) unmarshaller.unmarshal(file);
+    }
+
 }

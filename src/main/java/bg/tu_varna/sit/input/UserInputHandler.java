@@ -39,6 +39,7 @@ public class UserInputHandler {
         Command holidayCommand = new HolidayCommand(eventService, holidayService);
         Command busydaysCommand = new BusyDaysCommand(eventService);
         Command findslotCommand = new FindSlotCommand(eventService);
+        Command findslotwithCommand = new FindSlotWithCommand(eventService);
 
         while (true) {
 
@@ -92,6 +93,9 @@ public class UserInputHandler {
                 case "findslot":
                     findslotCommand.execute();
                     break;
+                case "findslotwith":
+                    findslotwithCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -120,6 +124,7 @@ public class UserInputHandler {
             System.out.println("holiday - Mark date as holiday");
             System.out.println("busydays");
             System.out.println("findslot");
+            System.out.println("findslotwith");
             System.out.println("exit - Exit");
         }
     }

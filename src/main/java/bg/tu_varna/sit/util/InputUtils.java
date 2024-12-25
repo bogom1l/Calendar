@@ -62,4 +62,9 @@ public class InputUtils {
             }
         }
     }
+
+    public static String readString(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
+    }
 }

@@ -218,6 +218,12 @@ public class EventService {
                 .toList();
     }
 
+    public List<Event> getEventsByDate(LocalDate date, EventsWrapper wrapper) {
+        return wrapper.getEvents()
+                .stream()
+                .filter(event -> event.getDate().equals(date))
+                .toList();
+    }
 
 
 
