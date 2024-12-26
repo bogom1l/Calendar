@@ -39,6 +39,7 @@ public class UserInputHandler {
         Command findslotwithCommand = new FindSlotWithCommand(eventService);
         Command mergeCommand = new MergeCommand(eventService);
         Command helpCommand = new HelpCommand();
+        Command exitCommand = new ExitCommand(scanner);
 
         while (true) {
 
@@ -102,8 +103,10 @@ public class UserInputHandler {
                     helpCommand.execute();
                     break;
                 case "exit":
-                    System.out.println("Exiting...");
-                    scanner.close();
+//                    System.out.println("Exiting...");
+//                    scanner.close();
+//                    return;
+                    exitCommand.execute();
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
