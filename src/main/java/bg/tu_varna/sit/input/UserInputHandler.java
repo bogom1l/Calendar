@@ -8,10 +8,7 @@ import bg.tu_varna.sit.commands.eventswrapper.SaveAsCommand;
 import bg.tu_varna.sit.commands.eventswrapper.SaveCommand;
 import bg.tu_varna.sit.service.EventService;
 import bg.tu_varna.sit.service.HolidayService;
-import bg.tu_varna.sit.util.FileUtil;
 
-import java.io.File;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInputHandler {
@@ -41,6 +38,7 @@ public class UserInputHandler {
         Command findslotCommand = new FindSlotCommand(eventService);
         Command findslotwithCommand = new FindSlotWithCommand(eventService);
         Command mergeCommand = new MergeCommand(eventService);
+        Command helpCommand = new HelpCommand();
 
         while (true) {
 
@@ -100,6 +98,9 @@ public class UserInputHandler {
                 case "merge":
                     mergeCommand.execute();
                     break;
+                case "help":
+                    helpCommand.execute();
+                    break;
                 case "exit":
                     System.out.println("Exiting...");
                     scanner.close();
@@ -116,21 +117,7 @@ public class UserInputHandler {
             System.out.println("open - Open calendar");
             System.out.println("exit - Exit");
         } else {
-            System.out.println("save - Save calendar");
-            System.out.println("saveas - Save calendar as");
-            System.out.println("close - Close calendar");
-            System.out.println("book - Book event");
-            System.out.println("unbook - Unbook event");
-            System.out.println("listall - List all events");
-            System.out.println("find - Find event");
-            System.out.println("agenda - List all events for a date");
-            System.out.println("change - Change event");
-            System.out.println("holiday - Mark date as holiday");
-            System.out.println("busydays");
-            System.out.println("findslot");
-            System.out.println("findslotwith");
-            System.out.println("merge <calendar> - Merge calendar");
-            System.out.println("exit - Exit");
+            System.out.println("Type 'help' to see all available commands.");
         }
     }
 }
