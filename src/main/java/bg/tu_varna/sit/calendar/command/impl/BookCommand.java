@@ -1,7 +1,6 @@
 package bg.tu_varna.sit.calendar.command.impl;
 
 import bg.tu_varna.sit.calendar.command.Command;
-import bg.tu_varna.sit.calendar.exception.EventException;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.service.HolidayService;
@@ -21,21 +20,21 @@ public class BookCommand implements Command {
     }
 
     @Override
-    public void execute() throws EventException {
+    public void execute() {
         Optional<Event> event = createEvent();
 
         if (event.isEmpty()) {
-            throw new EventException("Error creating an event.");
+            System.out.println("Error creating an event.");
         }
 
         if (eventService.bookEvent(event.get())) {
             System.out.println("Event booked successfully.");
         } else {
-            throw new EventException("Failed to book event.");
+            System.out.println("Failed to book event.");
         }
     }
 
-    private Optional<Event> createEvent() throws EventException {
+    private Optional<Event> createEvent() {
         System.out.println("Enter event details:");
 
         String title = InputUtils.readString("Title: ");
@@ -43,7 +42,7 @@ public class BookCommand implements Command {
         LocalDate date = InputUtils.readLocalDate("Date (YYYY-MM-DD): ");
 
         if (holidayService.isHoliday(date)) {
-            throw new EventException("Cannot schedule an event on " + date + " because it's a holiday.");
+            System.out.println("Cannot schedule an event on " + date + " because it's a holiday.");
         }
 
         LocalTime timeStart = InputUtils.readLocalTime("Start Time (HH:MM): ");

@@ -2,7 +2,6 @@ package bg.tu_varna.sit.calendar.ui;
 
 import bg.tu_varna.sit.calendar.command.CommandExecutor;
 import bg.tu_varna.sit.calendar.command.CommandType;
-import bg.tu_varna.sit.calendar.exception.EventException;
 import bg.tu_varna.sit.calendar.model.AppState;
 
 public class ApplicationManager {
@@ -16,7 +15,7 @@ public class ApplicationManager {
         this.appState = appState;
     }
 
-    public void start() throws EventException {
+    public void start() {
         System.out.println("Welcome to the Calendar Application!");
         boolean running = true;
 

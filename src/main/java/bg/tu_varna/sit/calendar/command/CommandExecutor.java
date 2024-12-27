@@ -1,7 +1,5 @@
 package bg.tu_varna.sit.calendar.command;
 
-import bg.tu_varna.sit.calendar.exception.EventException;
-
 public class CommandExecutor {
     private final CommandFactory commandFactory;
 
@@ -9,7 +7,7 @@ public class CommandExecutor {
         this.commandFactory = commandFactory;
     }
 
-    public void executeCommand(CommandType commandType) throws EventException {
+    public void executeCommand(CommandType commandType) {
         Command command = commandFactory.getCommand(commandType);
         if (command != null) {
             command.execute();

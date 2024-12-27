@@ -1,37 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
-    <event>
-        <date>2024-01-10</date>
-        <description>Project planning meeting with the team.</description>
-        <timeEnd>10:30</timeEnd>
-        <timeStart>09:00</timeStart>
-    </event>
-    <event>
-        <date>2024-01-10</date>
-        <description>Annual check-up appointment.</description>
-        <timeEnd>11:45</timeEnd>
-        <timeStart>11:00</timeStart>
-    </event>
-    <event>
-        <date>2024-01-10</date>
-        <description>Lunch at a nearby restaurant.</description>
-        <timeEnd>13:00</timeEnd>
-        <timeStart>12:00</timeStart>
-    </event>
-    <event>
-        <date>2024-01-11</date>
-        <description>Monthly update with stakeholders.</description>
-        <timeEnd>15:30</timeEnd>
-        <timeStart>14:00</timeStart>
-    </event>
-    <event>
-        <date>2024-01-11</date>
-        <description>Fitness training session.</description>
-        <timeEnd>17:00</timeEnd>
-        <timeStart>16:00</timeStart>
-    </event>
-    <event>
-        <date>2024-12-30</date>
+        <event>
+        <date>2024-12-20</date>
         <description>walk</description>
         <timeEnd>13:00</timeEnd>
         <timeStart>12:30</timeStart>
