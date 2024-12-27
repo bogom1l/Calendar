@@ -1,12 +1,12 @@
 package bg.tu_varna.sit;
 
-import bg.tu_varna.sit.commands.CommandExecutor;
-import bg.tu_varna.sit.commands.CommandFactory;
-import bg.tu_varna.sit.input.AppState;
-import bg.tu_varna.sit.input.ApplicationManager;
-import bg.tu_varna.sit.input.UserInputHandler;
-import bg.tu_varna.sit.service.EventService;
-import bg.tu_varna.sit.service.HolidayService;
+import bg.tu_varna.sit.calendar.command.CommandExecutor;
+import bg.tu_varna.sit.calendar.command.CommandFactory;
+import bg.tu_varna.sit.calendar.model.AppState;
+import bg.tu_varna.sit.calendar.ui.ApplicationManager;
+import bg.tu_varna.sit.calendar.ui.UserInputHandler;
+import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.service.HolidayService;
 
 import java.util.Scanner;
 
