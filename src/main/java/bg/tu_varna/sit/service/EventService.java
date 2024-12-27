@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.service;
 
+import bg.tu_varna.sit.input.AppState;
 import bg.tu_varna.sit.model.Event;
 import bg.tu_varna.sit.model.EventsWrapper;
 import bg.tu_varna.sit.util.JAXBParser;
@@ -14,13 +15,16 @@ import java.util.*;
 public class EventService {
     private EventsWrapper eventsWrapper;
     private File currentFile;
+    private final AppState appState;
 
-    public EventService() {
+    public EventService(AppState appState) {
+        this.appState = appState;
         this.eventsWrapper = new EventsWrapper();
     }
 
     public boolean isCalendarOpen() {
-        return currentFile != null;
+        //return currentFile != null;
+        return appState.isCalendarOpen(); // RETURN APP STATE
     }
 
     public boolean open(File xmlFile) {
@@ -31,6 +35,7 @@ public class EventService {
         try {
             this.eventsWrapper = JAXBParser.loadEventsFromXML(xmlFile);
             this.currentFile = xmlFile;
+            appState.setCalendarOpen(true); // SET APP STATE
             return true;
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -41,6 +46,7 @@ public class EventService {
     public void close() {
         this.eventsWrapper = new EventsWrapper();
         this.currentFile = null;
+        appState.setCalendarOpen(false); // SET APP STATE
     }
 
     public boolean save() {

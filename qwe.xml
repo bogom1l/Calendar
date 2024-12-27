@@ -1,38 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
     <event>
-        <name>Meeting with Team</name>
         <date>2024-01-10</date>
-        <timeStart>09:00</timeStart>
-        <timeEnd>10:30</timeEnd>
         <description>Project planning meeting with the team.</description>
+        <timeEnd>10:30</timeEnd>
+        <timeStart>09:00</timeStart>
     </event>
     <event>
-        <name>Doctor Appointment</name>
         <date>2024-01-10</date>
-        <timeStart>11:00</timeStart>
-        <timeEnd>11:45</timeEnd>
         <description>Annual check-up appointment.</description>
+        <timeEnd>11:45</timeEnd>
+        <timeStart>11:00</timeStart>
     </event>
     <event>
-        <name>Lunch Break</name>
         <date>2024-01-10</date>
-        <timeStart>12:00</timeStart>
-        <timeEnd>13:00</timeEnd>
         <description>Lunch at a nearby restaurant.</description>
+        <timeEnd>13:00</timeEnd>
+        <timeStart>12:00</timeStart>
     </event>
     <event>
-        <name>Conference Call</name>
         <date>2024-01-11</date>
-        <timeStart>14:00</timeStart>
-        <timeEnd>15:30</timeEnd>
         <description>Monthly update with stakeholders.</description>
+        <timeEnd>15:30</timeEnd>
+        <timeStart>14:00</timeStart>
     </event>
     <event>
-        <name>Gym Session</name>
         <date>2024-01-11</date>
-        <timeStart>16:00</timeStart>
-        <timeEnd>17:00</timeEnd>
         <description>Fitness training session.</description>
+        <timeEnd>17:00</timeEnd>
+        <timeStart>16:00</timeStart>
+    </event>
+    <event>
+        <date>2024-12-30</date>
+        <description>walk</description>
+        <timeEnd>13:00</timeEnd>
+        <timeStart>12:30</timeStart>
+        <title>new</title>
+    </event>
+    <event>
+        <date>2041-12-12</date>
+        <description>bye</description>
+        <timeEnd>16:25</timeEnd>
+        <timeStart>16:00</timeStart>
+        <title>zdr</title>
     </event>
 </events>
-

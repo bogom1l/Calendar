@@ -11,11 +11,9 @@ import java.util.Scanner;
 
 public class AgendaCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
 
-    public AgendaCommand(EventService eventService, Scanner scanner) {
+    public AgendaCommand(EventService eventService) {
         this.eventService = eventService;
-        this.scanner = scanner;
     }
 
     @Override
