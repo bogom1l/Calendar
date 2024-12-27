@@ -32,6 +32,7 @@ public class HelpCommand implements Command {
     @Override
     public void execute() {
         System.out.println("Available commands:");
+
         for (String description : commandDescriptions) {
             System.out.println(description);
         }

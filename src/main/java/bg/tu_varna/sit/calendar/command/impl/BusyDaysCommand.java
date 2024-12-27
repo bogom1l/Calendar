@@ -19,6 +19,9 @@ public class BusyDaysCommand implements Command {
 
     @Override
     public void execute() {
+
+        //todo make this cleaner
+
         LocalDate from = InputUtils.readLocalDate("Enter the start date (yyyy-mm-dd): ");
         LocalDate to = InputUtils.readLocalDate("Enter the end date (yyyy-mm-dd): ");
 
@@ -28,6 +31,7 @@ public class BusyDaysCommand implements Command {
             System.out.println("No busy days in the specified range.");
         } else {
             System.out.println("Busy days sorted by booked minutes:");
+
             for (Map.Entry<LocalDate, Map.Entry<Long, List<Event>>> entry : busyDays) {
                 LocalDate date = entry.getKey();
                 long totalMinutes = entry.getValue().getKey();
@@ -42,4 +46,5 @@ public class BusyDaysCommand implements Command {
             }
         }
     }
+
 }

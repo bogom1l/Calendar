@@ -42,5 +42,4 @@ public class SaveAsCommand implements Command {
             System.out.println("Failed to save the calendar.");
         }
     }
-
 }

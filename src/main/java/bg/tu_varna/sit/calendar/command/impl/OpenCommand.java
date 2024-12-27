@@ -22,7 +22,6 @@ public class OpenCommand implements Command {
         }
 
         FileUtil.printAllXmlFiles();
-
         String fileName = InputUtils.readString("Enter the calendar file name to open (e.g., 'calendar.xml'): ");
 
         if (!isValidFileName(fileName)) {
@@ -54,5 +53,4 @@ public class OpenCommand implements Command {
             System.out.println("Failed to open calendar. Make sure the file exists.");
         }
     }
-
 }
