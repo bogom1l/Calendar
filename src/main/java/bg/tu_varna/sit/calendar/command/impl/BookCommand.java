@@ -8,7 +8,6 @@ import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Optional;
 
 public class BookCommand implements Command {
     private final EventService eventService;
@@ -21,49 +20,47 @@ public class BookCommand implements Command {
 
     @Override
     public void execute() {
-        Optional<Event> event = createEvent();
+        Event event = createEvent();
 
-        if (event.isEmpty()) {
-            System.out.println("Error creating an event.");
-        }
-
-        if (eventService.bookEvent(event.get())) {
+        if (eventService.bookEvent(event)) {
             System.out.println("Event booked successfully.");
         } else {
-            System.out.println("Failed to book event.");
+            System.out.println("Failed to book the event. Please try again.");
         }
     }
 
-    private Optional<Event> createEvent() {
+    private Event createEvent() {
         System.out.println("Enter event details:");
-
         String title = InputUtils.readString("Title: ");
-
-        LocalDate date = InputUtils.readLocalDate("Date (YYYY-MM-DD): ");
-
-        if (holidayService.isHoliday(date)) {
-            System.out.println("Cannot schedule an event on " + date + " because it's a holiday.");
-        }
-
+        LocalDate date = getValidatedDate();
         LocalTime timeStart = InputUtils.readLocalTime("Start Time (HH:MM): ");
         LocalTime timeEnd = getValidatedTimeEnd(timeStart);
-
         String description = InputUtils.readString("Description: ");
 
-        return Optional.of(new Event(title, date, timeStart, timeEnd, description));
+        return new Event(title, date, timeStart, timeEnd, description);
     }
 
     private LocalTime getValidatedTimeEnd(LocalTime timeStart) {
-        LocalTime timeEnd;
-        while (true) {
+        LocalTime timeEnd = InputUtils.readLocalTime("End Time (HH:MM): ");
+
+        while (!timeEnd.isAfter(timeStart)) {
+            System.out.println("End time must be after " + timeStart + ". Please try again.");
             timeEnd = InputUtils.readLocalTime("End Time (HH:MM): ");
-            if (timeEnd.isAfter(timeStart)) {
-                return timeEnd;
+        }
+
+        return timeEnd;
+    }
+
+    private LocalDate getValidatedDate() {
+        while (true) {
+            LocalDate date = InputUtils.readLocalDate("Date (YYYY-MM-DD): ");
+
+            if (holidayService.isHoliday(date)) {
+                System.out.println("Cannot schedule an event on " + date + " because it's a holiday. Please enter a different date.");
             } else {
-                System.out.println("End time must be after " + timeStart + ". Please try again.");
+                return date;
             }
         }
     }
-
 }
 
