@@ -22,7 +22,9 @@ public class FindSlotCommand implements Command {
 
     @Override
     public void execute() {
-        // Load holidays from holidays.xml
+
+        //todo make this cleaner
+
         Set<LocalDate> holidays = new HashSet<>();
         try {
             HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename("holidays.xml");

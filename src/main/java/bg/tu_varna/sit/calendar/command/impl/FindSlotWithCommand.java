@@ -23,11 +23,13 @@ public class FindSlotWithCommand implements Command {
 
     @Override
     public void execute() {
+
+        //todo make this cleaner
+
         LocalDate fromDate = InputUtils.readLocalDate("Enter the starting date (yyyy-mm-dd): ");
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
         String calendarFileName = InputUtils.readString("Enter the name of the other calendar (e.g., calendar.xml): ");
 
-        // Load holidays from holidays.xml
         Set<LocalDate> holidays = new HashSet<>();
         try {
             HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename("holidays.xml");

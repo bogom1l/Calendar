@@ -30,9 +30,6 @@ public class ApplicationManager {
                 continue;
             }
 
-            // Check if the calendar is open or validate the command
-            //if (!eventService.isCalendarOpen() && !isCommandAllowedWithoutCalendar(commandType)) {
-
             if (!appState.isCalendarOpen() && !isCommandAllowedWithoutCalendar(commandType)) {
                 System.out.println("No calendar file is currently open. Please open a file first.");
                 continue;

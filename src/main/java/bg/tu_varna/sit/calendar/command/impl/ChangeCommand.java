@@ -21,6 +21,9 @@ public class ChangeCommand implements Command {
 
     @Override
     public void execute() {
+
+        //todo make this cleaner
+
         // Step 1: Get user input for date and timeStart
         LocalDate date = InputUtils.readLocalDate("Enter the event date (yyyy-mm-dd): ");
         LocalTime timeStart = InputUtils.readLocalTime("Enter the event start time (hh:mm): ");

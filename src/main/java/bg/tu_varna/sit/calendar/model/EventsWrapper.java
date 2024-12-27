@@ -1,6 +1,5 @@
 package bg.tu_varna.sit.calendar.model;
 
-
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 

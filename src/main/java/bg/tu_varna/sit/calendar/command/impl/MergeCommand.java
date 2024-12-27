@@ -19,6 +19,9 @@ public class MergeCommand implements Command {
 
     @Override
     public void execute() {
+
+        //todo make this cleaner
+
         String calendarFileName = InputUtils.readString("Enter the name of the calendar to merge (e.g., calendar.xml): ");
         EventsWrapper otherEventsWrapper;
 

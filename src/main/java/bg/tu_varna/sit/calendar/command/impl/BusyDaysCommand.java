@@ -35,7 +35,6 @@ public class BusyDaysCommand implements Command {
 
                 System.out.println(date + ": " + totalMinutes + " minutes booked");
 
-                // Print event details for the day
                 for (Event event : events) {
                     System.out.println("  Event: [" + event.getTitle() + "] " + event.getTimeStart() + " - " + event.getTimeEnd() + " (" +
                             Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes() + " minutes)");
