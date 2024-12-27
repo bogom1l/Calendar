@@ -1,4 +1,4 @@
-package bg.tu_varna.sit.calendar.command.util;
+package bg.tu_varna.sit.calendar.util;
 
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.model.HolidaysWrapper;

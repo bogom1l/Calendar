@@ -1,4 +1,4 @@
-package bg.tu_varna.sit.calendar.command.event;
+package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.service.EventService;

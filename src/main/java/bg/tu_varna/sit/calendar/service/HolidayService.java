@@ -3,7 +3,7 @@ package bg.tu_varna.sit.calendar.service;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.model.Holiday;
 import bg.tu_varna.sit.calendar.model.HolidaysWrapper;
-import bg.tu_varna.sit.calendar.command.util.JAXBParser;
+import bg.tu_varna.sit.calendar.util.JAXBParser;
 import jakarta.xml.bind.JAXBException;
 
 import java.io.File;

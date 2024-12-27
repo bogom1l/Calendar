@@ -1,11 +1,11 @@
-package bg.tu_varna.sit.calendar.command.event;
+package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.service.EventService;
-import bg.tu_varna.sit.calendar.command.util.InputUtils;
-import bg.tu_varna.sit.calendar.command.util.JAXBParser;
+import bg.tu_varna.sit.calendar.util.InputUtils;
+import bg.tu_varna.sit.calendar.util.JAXBParser;
 
 import java.util.ArrayList;
 import java.util.List;

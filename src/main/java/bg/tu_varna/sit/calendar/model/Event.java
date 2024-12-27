@@ -1,7 +1,7 @@
 package bg.tu_varna.sit.calendar.model;
 
-import bg.tu_varna.sit.calendar.command.util.LocalDateAdapter;
-import bg.tu_varna.sit.calendar.command.util.LocalTimeAdapter;
+import bg.tu_varna.sit.calendar.util.LocalDateAdapter;
+import bg.tu_varna.sit.calendar.util.LocalTimeAdapter;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

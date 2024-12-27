@@ -1,4 +1,4 @@
-package bg.tu_varna.sit.calendar.command.util;
+package bg.tu_varna.sit.calendar.util;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,7 +29,6 @@ public class FileUtil {
         }
         return xmlFiles;
     }
-
 
     public static void printAllXmlFiles() {
         List<File> xmlFiles = getAllXmlFiles();

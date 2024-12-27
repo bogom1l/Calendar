@@ -1,8 +1,8 @@
-package bg.tu_varna.sit.calendar.command.eventswrapper;
+package bg.tu_varna.sit.calendar.command.impl.eventswrapper;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.service.EventService;
-import bg.tu_varna.sit.calendar.command.util.FileUtil;
+import bg.tu_varna.sit.calendar.util.FileUtil;
 
 import java.io.File;
 import java.util.Scanner;
