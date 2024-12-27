@@ -2,22 +2,20 @@ package bg.tu_varna.sit.calendar.command.impl;
 
 import bg.tu_varna.sit.calendar.command.Command;
 import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.io.File;
-import java.util.Scanner;
 
 public class SaveAsCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
 
-    public SaveAsCommand(EventService eventService, Scanner scanner) {
+    public SaveAsCommand(EventService eventService) {
         this.eventService = eventService;
-        this.scanner = scanner;
     }
 
     @Override
     public void execute() {
-        String newFileName = promptForFileName();
+        String newFileName = InputUtils.readString("Enter the new calendar file name to save as (e.g., 'new_calendar.xml'): ");
 
         if (!isValidFileName(newFileName)) {
             System.out.println("Invalid file format. Please provide a valid .xml file.");
@@ -26,11 +24,6 @@ public class SaveAsCommand implements Command {
 
         File newFile = getFileFromCurrentDirectory(newFileName);
         saveCalendar(newFile);
-    }
-
-    private String promptForFileName() {
-        System.out.print("Enter the new calendar file name to save as (e.g., 'new_calendar.xml'): ");
-        return scanner.nextLine();
     }
 
     private boolean isValidFileName(String fileName) {

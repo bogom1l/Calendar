@@ -8,15 +8,12 @@ import bg.tu_varna.sit.calendar.util.InputUtils;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class ChangeCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
 
-    public ChangeCommand(EventService eventService, Scanner scanner) {
+    public ChangeCommand(EventService eventService) {
         this.eventService = eventService;
-        this.scanner = scanner;
     }
 
     @Override
@@ -44,8 +41,7 @@ public class ChangeCommand implements Command {
         String fieldToChange = getFieldToChange();
 
         // Step 3: Prompt for the new value
-        System.out.print("Enter the new value: ");
-        String newValue = scanner.nextLine();
+        String newValue = InputUtils.readString("Enter the new value: ");
 
         boolean success = false;
 
@@ -113,8 +109,7 @@ public class ChangeCommand implements Command {
 
     private String getFieldToChange() {
         while (true) {
-            System.out.print("Enter the option to change (date, timeStart, timeEnd, title, description): ");
-            String input = scanner.nextLine();
+            String input = InputUtils.readString("Enter the option to change (date, timeStart, timeEnd, title, description): ");
             if (isValidOption(input)) {
                 return input;
             } else {

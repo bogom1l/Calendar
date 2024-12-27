@@ -45,11 +45,14 @@ public class InputUtils {
     }
 
     public static String readString(String prompt) {
-        System.out.print(prompt);
-        String input = scanner.nextLine().trim();
+        String input = null;
 
-        if (input.isBlank()) {
-            System.out.println("Input cannot be empty.");
+        while (input == null || input.isBlank()) {
+            System.out.print(prompt);
+            input = scanner.nextLine().trim();
+            if (input.isBlank()) {
+                System.out.println("Input cannot be empty. Please try again.");
+            }
         }
 
         return input;

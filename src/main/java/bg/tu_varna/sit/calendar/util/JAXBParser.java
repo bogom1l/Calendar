@@ -10,7 +10,6 @@ import jakarta.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class JAXBParser {
-
     private static final String USER_DIR = System.getProperty("user.dir");
 
     private static JAXBContext createContext(Class<?> clazz) throws JAXBException {

@@ -3,17 +3,15 @@ package bg.tu_varna.sit.calendar.command.impl;
 import bg.tu_varna.sit.calendar.command.Command;
 import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.util.FileUtil;
+import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.io.File;
-import java.util.Scanner;
 
 public class OpenCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
 
-    public OpenCommand(EventService eventService, Scanner scanner) {
+    public OpenCommand(EventService eventService) {
         this.eventService = eventService;
-        this.scanner = scanner;
     }
 
     @Override
@@ -25,7 +23,7 @@ public class OpenCommand implements Command {
 
         FileUtil.printAllXmlFiles();
 
-        String fileName = promptForFileName();
+        String fileName = InputUtils.readString("Enter the calendar file name to open (e.g., 'calendar.xml'): ");
 
         if (!isValidFileName(fileName)) {
             System.out.println("Invalid file format. Please provide a valid .xml file.");
@@ -38,11 +36,6 @@ public class OpenCommand implements Command {
 
     private boolean isCalendarAlreadyOpened() {
         return eventService.isCalendarOpen();
-    }
-
-    private String promptForFileName() {
-        System.out.print("Enter the calendar file name to open (e.g., 'calendar.xml'): ");
-        return scanner.nextLine();
     }
 
     private boolean isValidFileName(String fileName) {

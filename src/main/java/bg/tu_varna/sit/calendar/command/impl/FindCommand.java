@@ -3,23 +3,20 @@ package bg.tu_varna.sit.calendar.command.impl;
 import bg.tu_varna.sit.calendar.command.Command;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class FindCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
 
-    public FindCommand(EventService eventService, Scanner scanner) {
+    public FindCommand(EventService eventService) {
         this.eventService = eventService;
-        this.scanner = scanner;
     }
 
     @Override
     public void execute() {
-        System.out.print("Enter the search term: ");
-        String searchTerm = scanner.nextLine();
+        String searchTerm = InputUtils.readString("Enter the search term: ");
 
         List<Event> matchingEvents = eventService.findEventsByTitleOrDescription(searchTerm);
 
