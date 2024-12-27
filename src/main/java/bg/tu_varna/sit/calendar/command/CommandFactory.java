@@ -1,8 +1,6 @@
 package bg.tu_varna.sit.calendar.command;
 
-import bg.tu_varna.sit.calendar.command.contract.Command;
-import bg.tu_varna.sit.calendar.command.impl.event.*;
-import bg.tu_varna.sit.calendar.command.impl.eventswrapper.*;
+import bg.tu_varna.sit.calendar.command.impl.*;
 import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.service.HolidayService;
 

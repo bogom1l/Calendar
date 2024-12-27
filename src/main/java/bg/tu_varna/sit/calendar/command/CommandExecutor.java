@@ -1,7 +1,5 @@
 package bg.tu_varna.sit.calendar.command;
 
-import bg.tu_varna.sit.calendar.command.contract.Command;
-
 public class CommandExecutor {
     private final CommandFactory commandFactory;
 

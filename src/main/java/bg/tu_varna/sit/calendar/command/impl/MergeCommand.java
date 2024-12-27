@@ -1,6 +1,6 @@
-package bg.tu_varna.sit.calendar.command.impl.event;
+package bg.tu_varna.sit.calendar.command.impl;
 
-import bg.tu_varna.sit.calendar.command.contract.Command;
+import bg.tu_varna.sit.calendar.command.Command;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.service.EventService;
