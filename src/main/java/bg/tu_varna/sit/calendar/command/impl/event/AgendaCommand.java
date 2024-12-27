@@ -2,16 +2,16 @@ package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
-import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class AgendaCommand implements Command {
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
 
-    public AgendaCommand(EventServiceImpl eventService) {
+    public AgendaCommand(EventService eventService) {
         this.eventService = eventService;
     }
 

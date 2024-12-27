@@ -1,16 +1,16 @@
 package bg.tu_varna.sit.calendar.command.impl.eventswrapper;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
-import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.EventService;
 
 import java.io.File;
 import java.util.Scanner;
 
 public class SaveAsCommand implements Command {
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
     private final Scanner scanner;
 
-    public SaveAsCommand(EventServiceImpl eventService, Scanner scanner) {
+    public SaveAsCommand(EventService eventService, Scanner scanner) {
         this.eventService = eventService;
         this.scanner = scanner;
     }

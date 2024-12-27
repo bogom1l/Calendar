@@ -2,7 +2,7 @@ package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
-import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.Duration;
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 public class BusyDaysCommand implements Command {
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
 
-    public BusyDaysCommand(EventServiceImpl eventService) {
+    public BusyDaysCommand(EventService eventService) {
         this.eventService = eventService;
     }
 

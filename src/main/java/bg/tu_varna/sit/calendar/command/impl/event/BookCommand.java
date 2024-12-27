@@ -2,8 +2,8 @@ package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
-import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
-import bg.tu_varna.sit.calendar.service.impl.HolidayServiceImpl;
+import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.service.HolidayService;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.LocalDate;
@@ -12,11 +12,11 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class BookCommand implements Command {
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
     private final Scanner scanner;
-    private final HolidayServiceImpl holidayService;
+    private final HolidayService holidayService;
 
-    public BookCommand(EventServiceImpl eventService, Scanner scanner, HolidayServiceImpl holidayService) {
+    public BookCommand(EventService eventService, Scanner scanner, HolidayService holidayService) {
         this.eventService = eventService;
         this.scanner = scanner;
         this.holidayService = holidayService;

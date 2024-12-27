@@ -1,12 +1,12 @@
 package bg.tu_varna.sit.calendar.command.impl.eventswrapper;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
-import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.EventService;
 
 public class SaveCommand implements Command {
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
 
-    public SaveCommand(EventServiceImpl eventService) {
+    public SaveCommand(EventService eventService) {
         this.eventService = eventService;
     }
 
