@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 @XmlRootElement
 public class Holiday {
-
     private LocalDate date;
 
     public Holiday() {

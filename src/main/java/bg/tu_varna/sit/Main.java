@@ -2,6 +2,7 @@ package bg.tu_varna.sit;
 
 import bg.tu_varna.sit.calendar.command.CommandExecutor;
 import bg.tu_varna.sit.calendar.command.CommandFactory;
+import bg.tu_varna.sit.calendar.exception.EventException;
 import bg.tu_varna.sit.calendar.model.AppState;
 import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.service.HolidayService;
@@ -13,7 +14,7 @@ import bg.tu_varna.sit.calendar.ui.UserInputHandler;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EventException {
         AppState appState = new AppState();
 
         EventService eventService = new EventServiceImpl(appState);

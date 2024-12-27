@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.calendar.command.impl;
 
 import bg.tu_varna.sit.calendar.command.Command;
+import bg.tu_varna.sit.calendar.exception.EventException;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.service.EventService;
 import bg.tu_varna.sit.calendar.service.HolidayService;
@@ -9,53 +10,46 @@ import bg.tu_varna.sit.calendar.util.InputUtils;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class BookCommand implements Command {
     private final EventService eventService;
-    private final Scanner scanner;
     private final HolidayService holidayService;
 
-    public BookCommand(EventService eventService, Scanner scanner, HolidayService holidayService) {
+    public BookCommand(EventService eventService, HolidayService holidayService) {
         this.eventService = eventService;
-        this.scanner = scanner;
         this.holidayService = holidayService;
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EventException {
         Optional<Event> event = createEvent();
 
         if (event.isEmpty()) {
-            System.out.println("Error creating an event.");
-            return;
+            throw new EventException("Error creating an event.");
         }
 
         if (eventService.bookEvent(event.get())) {
             System.out.println("Event booked successfully.");
         } else {
-            System.out.println("Failed to book event.");
+            throw new EventException("Failed to book event.");
         }
     }
 
-    private Optional<Event> createEvent() {
+    private Optional<Event> createEvent() throws EventException {
         System.out.println("Enter event details:");
 
-        System.out.print("Title: ");
-        String title = scanner.nextLine();
+        String title = InputUtils.readString("Title: ");
 
         LocalDate date = InputUtils.readLocalDate("Date (YYYY-MM-DD): ");
 
         if (holidayService.isHoliday(date)) {
-            System.out.println("Cannot schedule an event on " + date + " because it's a holiday.");
-            return Optional.empty();
+            throw new EventException("Cannot schedule an event on " + date + " because it's a holiday.");
         }
 
         LocalTime timeStart = InputUtils.readLocalTime("Start Time (HH:MM): ");
         LocalTime timeEnd = getValidatedTimeEnd(timeStart);
 
-        System.out.print("Description: ");
-        String description = scanner.nextLine();
+        String description = InputUtils.readString("Description: ");
 
         return Optional.of(new Event(title, date, timeStart, timeEnd, description));
     }

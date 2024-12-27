@@ -18,7 +18,7 @@ public class CommandFactory {
         commands.put(CommandType.SAVEAS, new SaveAsCommand(eventService, scanner));
         commands.put(CommandType.HELP, new HelpCommand());
         commands.put(CommandType.EXIT, new ExitCommand(scanner));
-        commands.put(CommandType.BOOK, new BookCommand(eventService, scanner, holidayService));
+        commands.put(CommandType.BOOK, new BookCommand(eventService, holidayService));
         commands.put(CommandType.UNBOOK, new UnbookCommand(eventService));
         commands.put(CommandType.LISTALL, new ListAllCommand(eventService));
         commands.put(CommandType.AGENDA, new AgendaCommand(eventService));
