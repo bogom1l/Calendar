@@ -1,17 +1,13 @@
 package bg.tu_varna.sit.calendar.model;
 
 public class AppState {
-    private boolean calendarOpen;
+    private boolean state;
 
     public boolean isCalendarOpen() {
-        return calendarOpen;
+        return state;
     }
 
-    public void setCalendarOpen(boolean calendarOpen) {
-        this.calendarOpen = calendarOpen;
-    }
-
-    public void resetState() {
-        this.calendarOpen = false;
+    public void setCalendarState(boolean state) {
+        this.state = state;
     }
 }

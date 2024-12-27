@@ -5,7 +5,7 @@ import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.model.Holiday;
 import bg.tu_varna.sit.calendar.model.HolidaysWrapper;
-import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 import bg.tu_varna.sit.calendar.util.JAXBParser;
 
@@ -15,9 +15,9 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class FindSlotWithCommand implements Command {
-    private final EventService eventService;
+    private final EventServiceImpl eventService;
 
-    public FindSlotWithCommand(EventService eventService) {
+    public FindSlotWithCommand(EventServiceImpl eventService) {
         this.eventService = eventService;
     }
 

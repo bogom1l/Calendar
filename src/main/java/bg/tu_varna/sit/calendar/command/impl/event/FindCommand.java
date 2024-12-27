@@ -2,16 +2,16 @@ package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
-import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class FindCommand implements Command {
-    private final EventService eventService;
+    private final EventServiceImpl eventService;
     private final Scanner scanner;
 
-    public FindCommand(EventService eventService, Scanner scanner) {
+    public FindCommand(EventServiceImpl eventService, Scanner scanner) {
         this.eventService = eventService;
         this.scanner = scanner;
     }

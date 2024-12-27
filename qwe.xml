@@ -44,4 +44,11 @@
         <timeStart>16:00</timeStart>
         <title>zdr</title>
     </event>
+    <event>
+        <date>2001-10-10</date>
+        <description>1</description>
+        <timeEnd>15:45</timeEnd>
+        <timeStart>15:30</timeStart>
+        <title>1</title>
+    </event>
 </events>

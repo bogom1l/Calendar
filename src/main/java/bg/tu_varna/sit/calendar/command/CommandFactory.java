@@ -1,12 +1,10 @@
 package bg.tu_varna.sit.calendar.command;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
-import bg.tu_varna.sit.calendar.command.event.*;
-import bg.tu_varna.sit.calendar.command.eventswrapper.*;
 import bg.tu_varna.sit.calendar.command.impl.event.*;
 import bg.tu_varna.sit.calendar.command.impl.eventswrapper.*;
-import bg.tu_varna.sit.calendar.service.EventService;
-import bg.tu_varna.sit.calendar.service.HolidayService;
+import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.impl.HolidayServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +13,7 @@ import java.util.Scanner;
 public class CommandFactory {
     private final Map<CommandType, Command> commands = new HashMap<>();
 
-    public CommandFactory(EventService eventService, HolidayService holidayService, Scanner scanner) {
+    public CommandFactory(EventServiceImpl eventService, HolidayServiceImpl holidayService, Scanner scanner) {
         commands.put(CommandType.OPEN, new OpenCommand(eventService, scanner));
         commands.put(CommandType.CLOSE, new CloseCommand(eventService));
         commands.put(CommandType.SAVE, new SaveCommand(eventService));

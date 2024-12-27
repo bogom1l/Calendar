@@ -13,13 +13,10 @@ import java.time.LocalTime;
 public class Event {
     private String title;
 
-    //@XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate date;
 
-    //@XmlJavaTypeAdapter(LocalTimeAdapter.class)
     private LocalTime timeStart;
 
-    //@XmlJavaTypeAdapter(LocalTimeAdapter.class)
     private LocalTime timeEnd;
 
     private String description;

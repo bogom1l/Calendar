@@ -2,7 +2,7 @@ package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
 import bg.tu_varna.sit.calendar.model.Event;
-import bg.tu_varna.sit.calendar.service.EventService;
+import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.LocalDate;
@@ -11,10 +11,10 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class ChangeCommand implements Command {
-    private final EventService eventService;
+    private final EventServiceImpl eventService;
     private final Scanner scanner;
 
-    public ChangeCommand(EventService eventService, Scanner scanner) {
+    public ChangeCommand(EventServiceImpl eventService, Scanner scanner) {
         this.eventService = eventService;
         this.scanner = scanner;
     }

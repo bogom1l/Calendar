@@ -1,17 +1,17 @@
 package bg.tu_varna.sit.calendar.command.impl.event;
 
 import bg.tu_varna.sit.calendar.command.contract.Command;
-import bg.tu_varna.sit.calendar.service.EventService;
-import bg.tu_varna.sit.calendar.service.HolidayService;
+import bg.tu_varna.sit.calendar.service.impl.EventServiceImpl;
+import bg.tu_varna.sit.calendar.service.impl.HolidayServiceImpl;
 import bg.tu_varna.sit.calendar.util.InputUtils;
 
 import java.time.LocalDate;
 
 public class HolidayCommand implements Command {
-    private final EventService eventService;
-    private final HolidayService holidayService;
+    private final EventServiceImpl eventService;
+    private final HolidayServiceImpl holidayService;
 
-    public HolidayCommand(EventService eventService, HolidayService holidayService) {
+    public HolidayCommand(EventServiceImpl eventService, HolidayServiceImpl holidayService) {
         this.eventService = eventService;
         this.holidayService = holidayService;
     }
