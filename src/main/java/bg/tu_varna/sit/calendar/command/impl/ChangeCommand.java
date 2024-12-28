@@ -18,17 +18,11 @@ public class ChangeCommand implements Command {
 
     @Override
     public void execute() {
-
-        //todo make this cleaner
-
-        // Step 1: Get user input for date and timeStart
         LocalDate date = InputUtils.readLocalDate("Enter the event date (yyyy-mm-dd): ");
         LocalTime timeStart = InputUtils.readLocalTime("Enter the event start time (hh:mm): ");
 
-        // Step 2: Find the event by date and timeStart
         Optional<Event> eventToChange = eventService.findEventByDateAndTimeStart(date, timeStart);
 
-        // If event is not found, exit
         if (eventToChange.isEmpty()) {
             System.out.println("Event not found by the provided date and start time.");
             return;
@@ -37,74 +31,15 @@ public class ChangeCommand implements Command {
         Event event = eventToChange.get();
         System.out.println("Event found:\n" + event);
 
-        // Step 2: Prompt user for field to change
         String fieldToChange = getFieldToChange();
-
-        // Step 3: Prompt for the new value
         String newValue = InputUtils.readString("Enter the new value: ");
 
-        boolean success = false;
-
-        if ("date".equals(fieldToChange)) {
-            LocalDate newDate = LocalDate.parse(newValue);
-
-            if (!eventService.isTimeRangeAvailableForDate(newDate, event.getTimeStart(), event.getTimeEnd())) {
-                System.out.println("The selected date is already taken by another event.");
-                return;
-            }
-
-            success = eventService.updateEventDate(event, newDate);
-        } else if ("timeStart".equals(fieldToChange)) {
-
-            LocalTime newTimeStart = LocalTime.parse(newValue);
-
-            if (!eventService.isTimeStartAvailable(date, newTimeStart)) {
-                System.out.println("The selected start time is already taken by another event.");
-                return;
-            }
-
-            if (newTimeStart.isAfter(event.getTimeEnd())) {
-                System.out.println("The new start time cannot be after the existing event's end time.");
-                return;
-            }
-
-            success = eventService.updateEventStartTime(event, newTimeStart);
-
-        } else if ("timeEnd".equals(fieldToChange)) {
-
-            LocalTime newTimeEnd = LocalTime.parse(newValue);
-
-            if (!eventService.isTimeEndAvailable(date, newTimeEnd)) {
-                System.out.println("The selected end time is already taken by another event.");
-                return;
-            }
-
-            if (newTimeEnd.isBefore(event.getTimeStart())) {
-                System.out.println("The new end time cannot be before the existing event's start time.");
-                return;
-            }
-
-            success = eventService.updateEventEndTime(event, newTimeEnd);
-
-        } else if ("title".equals(fieldToChange)) {
-            success = eventService.updateEventTitle(event, newValue);
-        } else if ("description".equals(fieldToChange)) {
-            success = eventService.updateEventDescription(event, newValue);
-        }
-
+        boolean success = updateField(event, fieldToChange, newValue, date);
         if (success) {
             System.out.println("Event updated successfully.");
         } else {
-            System.out.println("Failed to update the event. Invalid value or field.");
+            System.out.println("Failed to update the event. Invalid value or conflict detected.");
         }
-    }
-
-    private boolean isValidOption(String option) {
-        return option.equals("date") ||
-                option.equals("timeStart") ||
-                option.equals("timeEnd") ||
-                option.equals("title") ||
-                option.equals("description");
     }
 
     private String getFieldToChange() {
@@ -112,11 +47,79 @@ public class ChangeCommand implements Command {
             String input = InputUtils.readString("Enter the option to change (date, timeStart, timeEnd, title, description): ");
             if (isValidOption(input)) {
                 return input;
-            } else {
-                System.out.println("Invalid option. Please try again.");
             }
+            System.out.println("Invalid option. Please try again.");
         }
     }
 
+    private boolean isValidOption(String option) {
+        return switch (option) {
+            case "date", "timeStart", "timeEnd", "title", "description" -> true;
+            default -> false;
+        };
+    }
 
+    private boolean updateField(Event event, String field, String newValue, LocalDate originalDate) {
+        return switch (field) {
+            case "date" -> updateDate(event, newValue);
+            case "timeStart" -> updateStartTime(event, newValue, originalDate);
+            case "timeEnd" -> updateEndTime(event, newValue, originalDate);
+            case "title" -> eventService.updateEventTitle(event, newValue);
+            case "description" -> eventService.updateEventDescription(event, newValue);
+            default -> false;
+        };
+    }
+
+    private boolean updateDate(Event event, String newValue) {
+        try {
+            LocalDate newDate = LocalDate.parse(newValue);
+            if (!eventService.isTimeRangeAvailableForDate(newDate, event.getTimeStart(), event.getTimeEnd())) {
+                System.out.println("The selected date is already taken by another event.");
+                return false;
+            }
+
+            return eventService.updateEventDate(event, newDate);
+        } catch (Exception e) {
+            System.out.println("Invalid date format.");
+            return false;
+        }
+    }
+
+    private boolean updateStartTime(Event event, String newValue, LocalDate date) {
+        try {
+            LocalTime newTimeStart = LocalTime.parse(newValue);
+            if (newTimeStart.isAfter(event.getTimeEnd())) {
+                System.out.println("The new start time cannot be after the existing event's end time.");
+                return false;
+            }
+            if (!eventService.isTimeStartAvailable(date, newTimeStart)) {
+                System.out.println("The selected start time is already taken by another event.");
+                return false;
+            }
+
+            return eventService.updateEventStartTime(event, newTimeStart);
+        } catch (Exception e) {
+            System.out.println("Invalid time format.");
+            return false;
+        }
+    }
+
+    private boolean updateEndTime(Event event, String newValue, LocalDate date) {
+        try {
+            LocalTime newTimeEnd = LocalTime.parse(newValue);
+            if (newTimeEnd.isBefore(event.getTimeStart())) {
+                System.out.println("The new end time cannot be before the existing event's start time.");
+                return false;
+            }
+            if (!eventService.isTimeEndAvailable(date, newTimeEnd)) {
+                System.out.println("The selected end time is already taken by another event.");
+                return false;
+            }
+
+            return eventService.updateEventEndTime(event, newTimeEnd);
+        } catch (Exception e) {
+            System.out.println("Invalid time format.");
+            return false;
+        }
+    }
 }
