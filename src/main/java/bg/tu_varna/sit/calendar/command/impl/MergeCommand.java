@@ -69,7 +69,7 @@ public class MergeCommand implements Command {
 
         int choice = promptUserForConflictResolution();
         switch (choice) {
-            case 1 -> System.out.println("Kept the current event.");
+            case 1 -> System.out.println("Kept the current event."); //todo currevents.remove??
             case 2 -> {
                 System.out.println("Replaced with the other event.");
                 currentEvents.remove(currentEvent); // Remove current event if replacing
