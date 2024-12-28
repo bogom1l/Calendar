@@ -63,20 +63,22 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean save() {
-        try {
-            JAXBParser.saveEventsToXML(this.eventsWrapper, this.currentFile);
-            return true;
-        } catch (JAXBException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return saveToFile(this.currentFile);
     }
 
     @Override
     public boolean saveAs(File newFile) {
+        return saveToFile(newFile);
+    }
+
+    private boolean saveToFile(File file) {
+        if (file == null) {
+            return false;
+        }
+
         try {
-            JAXBParser.saveEventsToXML(this.eventsWrapper, newFile);
-            this.currentFile = newFile;
+            JAXBParser.saveEventsToXML(this.eventsWrapper, file);
+            this.currentFile = file;
             return true;
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -129,9 +131,10 @@ public class EventServiceImpl implements EventService {
         return events;
     }
 
+    // Returns a new list of all events to protect the original list from external modifications
     @Override
     public List<Event> getAllEvents() {
-        return this.eventsWrapper.getEvents();
+        return new ArrayList<>(this.eventsWrapper.getEvents());
     }
 
     @Override
@@ -242,7 +245,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByDate(LocalDate date) {
-        return eventsWrapper.getEvents()
+        return this.eventsWrapper.getEvents()
                 .stream()
                 .filter(event -> event.getDate().equals(date))
                 .toList();
