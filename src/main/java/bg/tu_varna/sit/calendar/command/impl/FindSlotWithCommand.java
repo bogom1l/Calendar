@@ -23,81 +23,110 @@ public class FindSlotWithCommand implements Command {
 
     @Override
     public void execute() {
-
-        //todo make this cleaner
-
         LocalDate fromDate = InputUtils.readLocalDate("Enter the starting date (yyyy-mm-dd): ");
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
         String calendarFileName = InputUtils.readString("Enter the name of the other calendar (e.g., calendar.xml): ");
 
-        Set<LocalDate> holidays = new HashSet<>();
+        Set<LocalDate> holidays = loadHolidays("holidays.xml");
+        if (holidays == null) return;
+
+        EventsWrapper otherEventsWrapper = loadEventsWrapper(calendarFileName);
+        if (otherEventsWrapper == null) return;
+
+        findAvailableSlot(fromDate, hoursToFind, holidays, otherEventsWrapper, calendarFileName);
+    }
+
+    private Set<LocalDate> loadHolidays(String fileName) {
         try {
-            HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename("holidays.xml");
+            HolidaysWrapper holidaysWrapper = JAXBParser.loadHolidaysFromXMLByFilename(fileName);
+            Set<LocalDate> holidays = new HashSet<>();
             for (Holiday holiday : holidaysWrapper.getHolidays()) {
                 holidays.add(holiday.getDate());
             }
+            return holidays;
         } catch (Exception e) {
-            System.out.println("Error loading holidays.xml: " + e.getMessage());
-            return;
+            System.out.println("Error loading " + fileName + ": " + e.getMessage());
+            return null;
         }
+    }
 
-        EventsWrapper otherEventsWrapper;
+    private EventsWrapper loadEventsWrapper(String filename) {
         try {
-            // Use the helper method to load the additional calendar
-            otherEventsWrapper = JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
+            return JAXBParser.loadEventsFromXMLByFilename(filename);
         } catch (Exception e) {
             System.out.println("Error loading the specified calendar file: " + e.getMessage());
-            return;
+            return null;
         }
+    }
 
+    private void findAvailableSlot(LocalDate fromDate, int hoursToFind, Set<LocalDate> holidays, EventsWrapper otherEventsWrapper, String calendarFileName) {
         LocalDate currentDate = fromDate;
 
         while (true) {
-            // Skip holiday dates
             if (holidays.contains(currentDate)) {
                 currentDate = currentDate.plusDays(1);
                 continue;
             }
 
-            List<Event> allEvents = new ArrayList<>();
-            allEvents.addAll(eventService.getEventsByDate(currentDate));
-            allEvents.addAll(eventService.getEventsByDate(currentDate, otherEventsWrapper));
-
-            // Map events to their calendar sources
-            List<String> eventSources = new ArrayList<>();
-            LocalDate finalCurrentDate = currentDate;
-            allEvents.forEach(event -> {
-                if (eventService.getEventsByDate(finalCurrentDate).contains(event)) {
-                    eventSources.add("Current Calendar");
-                } else {
-                    eventSources.add(calendarFileName);
-                }
-            });
+            List<Event> allEvents = gatherAllEventsForDate(currentDate, otherEventsWrapper);
+            Map<Event, String> eventSources = mapEventSources(allEvents, currentDate, calendarFileName);
 
             allEvents.sort(Comparator.comparing(Event::getTimeStart));
 
-            LocalTime availableStart = LocalTime.of(8, 0);
-            LocalTime availableEnd = LocalTime.of(17, 0);
-
-            for (int i = 0; i < allEvents.size(); i++) {
-                Event event = allEvents.get(i);
-                String source = eventSources.get(i);
-
-                if (Duration.between(availableStart, event.getTimeStart()).toHours() >= hoursToFind) {
-                    System.out.println("Available slot found: " + currentDate + " from " + availableStart);
-                    System.out.println("Calendar: " + source);
-                    return;
-                }
-                availableStart = event.getTimeEnd();
-            }
-
-            if (Duration.between(availableStart, availableEnd).toHours() >= hoursToFind) {
-                System.out.println("Available slot found: " + currentDate + " from " + availableStart);
-                System.out.println("Calendar: Current Calendar");
+            if (findSlotInDay(allEvents, eventSources, currentDate, hoursToFind)) {
                 return;
             }
 
             currentDate = currentDate.plusDays(1);
         }
+    }
+
+    private List<Event> gatherAllEventsForDate(LocalDate date, EventsWrapper otherEventsWrapper) {
+        List<Event> allEvents = new ArrayList<>(eventService.getEventsByDate(date));
+        allEvents.addAll(eventService.getEventsByDate(date, otherEventsWrapper));
+        return allEvents;
+    }
+
+    private Map<Event, String> mapEventSources(List<Event> allEvents, LocalDate date, String otherCalendarName) {
+        Map<Event, String> eventSources = new HashMap<>();
+        List<Event> currentCalendarEvents = eventService.getEventsByDate(date);
+
+        for (Event event : allEvents) {
+            if (currentCalendarEvents.contains(event)) {
+                eventSources.put(event, "Current Calendar");
+            } else {
+                eventSources.put(event, otherCalendarName);
+            }
+        }
+        return eventSources;
+    }
+
+    private boolean findSlotInDay(List<Event> allEvents, Map<Event, String> eventSources, LocalDate currentDate, int hoursToFind) {
+        LocalTime availableStart = LocalTime.of(8, 0);
+        LocalTime availableEnd = LocalTime.of(17, 0);
+
+        for (Event event : allEvents) {
+            if (isSlotAvailable(availableStart, event.getTimeStart(), hoursToFind)) {
+                printSlot(currentDate, availableStart, eventSources.get(event));
+                return true;
+            }
+            availableStart = event.getTimeEnd();
+        }
+
+        if (isSlotAvailable(availableStart, availableEnd, hoursToFind)) {
+            printSlot(currentDate, availableStart, "Current Calendar");
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isSlotAvailable(LocalTime start, LocalTime end, int hoursToFind) {
+        return Duration.between(start, end).toHours() >= hoursToFind;
+    }
+
+    private void printSlot(LocalDate date, LocalTime startTime, String calendarName) {
+        System.out.println("Available slot found: " + date + " from " + startTime);
+        System.out.println("Calendar: " + calendarName);
     }
 }
