@@ -19,23 +19,28 @@ public class MergeCommand implements Command {
 
     @Override
     public void execute() {
-
-        //todo make this cleaner
-
         String calendarFileName = InputUtils.readString("Enter the name of the calendar to merge (e.g., calendar.xml): ");
-        EventsWrapper otherEventsWrapper;
-
-        try {
-            otherEventsWrapper = JAXBParser.loadEventsFromXMLByFilename(calendarFileName);
-        } catch (Exception e) {
-            System.out.println("Error loading the specified calendar file: " + e.getMessage());
-            return;
-        }
+        EventsWrapper otherEventsWrapper = loadEventsWrapper(calendarFileName);
+        if (otherEventsWrapper == null) return;
 
         List<Event> otherEvents = otherEventsWrapper.getEvents();
         List<Event> currentEvents = eventService.getEventsWrapper().getEvents();
+        List<Event> eventsToAdd = resolveConflicts(currentEvents, otherEvents);
 
-        // List to collect new events and conflicting decisions
+        currentEvents.addAll(eventsToAdd);
+        System.out.println("Merge completed.");
+    }
+
+    private EventsWrapper loadEventsWrapper(String filename) {
+        try {
+            return JAXBParser.loadEventsFromXMLByFilename(filename);
+        } catch (Exception e) {
+            System.out.println("Error loading the specified calendar file: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private List<Event> resolveConflicts(List<Event> currentEvents, List<Event> otherEvents) {
         List<Event> eventsToAdd = new ArrayList<>();
 
         for (Event otherEvent : otherEvents) {
@@ -44,57 +49,47 @@ public class MergeCommand implements Command {
             for (Event currentEvent : currentEvents) {
                 if (eventsConflict(currentEvent, otherEvent)) {
                     conflictFound = true;
-
-                    System.out.println("Conflict detected:");
-                    System.out.println("Current Event: " + currentEvent);
-                    System.out.println("Other Event: " + otherEvent);
-
-                    // Ask user to resolve conflict
-                    int choice = 0;
-                    while (choice < 1 || choice > 3) {
-                        System.out.println("Choose which event to keep:");
-                        System.out.println("1. Current Event");
-                        System.out.println("2. Other Event");
-                        System.out.println("3. Skip Both");
-
-                        choice = InputUtils.readInt("Enter your choice (1-3): ");
-                    }
-
-                    switch (choice) {
-                        case 1 -> {
-                            // Keep the current event, skip adding other event
-                            System.out.println("Kept the current event.");
-                            // eventsToAdd.add(currentEvent);
-                            // No need to add currentEvent again since it's already in currentEvents
-                        }
-                        case 2 -> {
-                            // Replace current event with the other event
-                            System.out.println("Replaced with the other event.");
-                            // todo ?
-                            currentEvents.remove(currentEvent);  // Optional: depending on whether you want to delete or overwrite
-                            eventsToAdd.add(otherEvent); // Add the other event instead
-                        }
-                        case 3 -> {
-                            // Skip both events
-                            System.out.println("Skipped both events.");
-                            // todo ?
-                            currentEvents.remove(currentEvent);  // Optional: depending on whether you want to delete or overwrite
-                        }
-                        default -> System.out.println("Invalid choice. Skipping...");
-                    }
+                    handleConflict(currentEvent, otherEvent, currentEvents, eventsToAdd);
                     break;
                 }
             }
 
             if (!conflictFound) {
-                eventsToAdd.add(otherEvent); // No conflict, simply add the event
+                eventsToAdd.add(otherEvent);
             }
         }
 
-        // Add all events that were decided upon
-        currentEvents.addAll(eventsToAdd);
+        return eventsToAdd;
+    }
 
-        System.out.println("Merge completed.");
+    private void handleConflict(Event currentEvent, Event otherEvent, List<Event> currentEvents, List<Event> eventsToAdd) {
+        System.out.println("Conflict detected:");
+        System.out.println("Current Event: " + currentEvent);
+        System.out.println("Other Event: " + otherEvent);
+
+        int choice = promptUserForConflictResolution();
+        switch (choice) {
+            case 1 -> System.out.println("Kept the current event.");
+            case 2 -> {
+                System.out.println("Replaced with the other event.");
+                currentEvents.remove(currentEvent); // Remove current event if replacing
+                eventsToAdd.add(otherEvent);
+            }
+            case 3 -> System.out.println("Skipped both events.");
+            default -> System.out.println("Invalid choice. Skipping...");
+        }
+    }
+
+    private int promptUserForConflictResolution() {
+        int choice = 0;
+        while (choice < 1 || choice > 3) {
+            System.out.println("Choose which event to keep:");
+            System.out.println("1. Current Event");
+            System.out.println("2. Other Event");
+            System.out.println("3. Skip Both");
+            choice = InputUtils.readInt("Enter your choice (1-3): ");
+        }
+        return choice;
     }
 
     private boolean eventsConflict(Event event1, Event event2) {
