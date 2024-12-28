@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.calendar.service;
 
+import bg.tu_varna.sit.calendar.model.BusyDay;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 
@@ -39,7 +40,7 @@ public interface EventService {
 
     List<Event> findEventsByTitleOrDescription(String searchTerm);
 
-    List<Map.Entry<LocalDate, Map.Entry<Long, List<Event>>>> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to);
+    List<BusyDay> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to);
 
     List<Event> getEventsByDate(LocalDate date);
 

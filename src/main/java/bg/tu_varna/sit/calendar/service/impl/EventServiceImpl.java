@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.calendar.service.impl;
 
 import bg.tu_varna.sit.calendar.model.AppState;
+import bg.tu_varna.sit.calendar.model.BusyDay;
 import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.model.EventsWrapper;
 import bg.tu_varna.sit.calendar.service.EventService;
@@ -11,7 +12,10 @@ import java.io.File;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
 public class EventServiceImpl implements EventService {
     private final AppState appState;
@@ -208,10 +212,9 @@ public class EventServiceImpl implements EventService {
                 .noneMatch(event -> newTimeEnd.isBefore(event.getTimeEnd()) && newTimeEnd.isAfter(event.getTimeStart()));
     }
 
-    //todo make this method more clean.
     @Override
-    public List<Map.Entry<LocalDate, Map.Entry<Long, List<Event>>>> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to) {
-        Map<LocalDate, Map.Entry<Long, List<Event>>> bookedMinutesMap = new HashMap<>();
+    public List<BusyDay> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to) {
+        List<BusyDay> busyDays = new ArrayList<>();
 
         // Iterate through all dates in the range and calculate booked minutes and events
         LocalDate currentDate = from;
@@ -226,15 +229,15 @@ public class EventServiceImpl implements EventService {
                     .sum();
 
             if (bookedMinutes > 0) {
-                bookedMinutesMap.put(currentDate, new AbstractMap.SimpleEntry<>(bookedMinutes, eventsForDay));
+                busyDays.add(new BusyDay(currentDate, bookedMinutes, eventsForDay));
             }
             currentDate = currentDate.plusDays(1);
         }
 
         // Sort by booked minutes in descending order
-        return bookedMinutesMap.entrySet().stream()
-                .sorted((entry1, entry2) -> Long.compare(entry2.getValue().getKey(), entry1.getValue().getKey()))
-                .toList();
+        busyDays.sort(Comparator.comparingLong(BusyDay::getTotalMinutesBooked).reversed());
+
+        return busyDays;
     }
 
     @Override
