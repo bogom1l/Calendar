@@ -28,7 +28,12 @@ public class FindSlotCommand implements Command {
         }
 
         LocalDate fromDate = InputUtils.readLocalDate("Enter the starting date (yyyy-mm-dd): ");
-        int hoursToFind = InputUtils.readInt("Enter the number of hours to find: ");
+
+        int hoursToFind = InputUtils.readInt("Enter the number of hours to find (1-8): ");
+        if(hoursToFind > 8) {
+            System.out.println("The number of hours to find exceeds 8 hours!");
+            return;
+        }
 
         findAvailableSlot(fromDate, hoursToFind, holidays);
     }

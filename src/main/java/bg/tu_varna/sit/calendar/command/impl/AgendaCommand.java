@@ -27,10 +27,11 @@ public class AgendaCommand implements Command {
     private void printAgenda(List<Event> events) {
         if (events.isEmpty()) {
             System.out.println("No events found for this date.");
-        } else {
-            for (Event event : events) {
-                System.out.println("Event: " + event.getTitle() + " | Start: " + event.getTimeStart() + " | End: " + event.getTimeEnd());
-            }
+            return;
+        }
+        
+        for (Event event : events) {
+            System.out.println("Event: " + event.getTitle() + " | Start: " + event.getTimeStart() + " | End: " + event.getTimeEnd());
         }
     }
 }
