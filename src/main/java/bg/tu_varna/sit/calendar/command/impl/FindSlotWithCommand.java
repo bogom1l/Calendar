@@ -28,10 +28,14 @@ public class FindSlotWithCommand implements Command {
         String calendarFileName = InputUtils.readString("Enter the name of the other calendar (e.g., calendar.xml): ");
 
         Set<LocalDate> holidays = loadHolidays("holidays.xml");
-        if (holidays == null) return;
+        if (holidays == null) {
+            return;
+        }
 
         EventsWrapper otherEventsWrapper = loadEventsWrapper(calendarFileName);
-        if (otherEventsWrapper == null) return;
+        if (otherEventsWrapper == null) {
+            return;
+        }
 
         findAvailableSlot(fromDate, hoursToFind, holidays, otherEventsWrapper, calendarFileName);
     }

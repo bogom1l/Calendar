@@ -12,10 +12,11 @@ public class SaveCommand implements Command {
 
     @Override
     public void execute() {
-        if (eventService.save()) {
-            System.out.println("Calendar saved successfully.");
-        } else {
+        if (!eventService.save()) {
             System.out.println("No calendar open to save.");
+            return;
         }
+
+        System.out.println("Calendar saved successfully.");
     }
 }

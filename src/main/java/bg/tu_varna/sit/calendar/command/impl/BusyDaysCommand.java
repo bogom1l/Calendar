@@ -26,17 +26,17 @@ public class BusyDaysCommand implements Command {
 
         if (busyDays.isEmpty()) {
             System.out.println("No busy days in the specified range.");
-        } else {
-            System.out.println("Busy days sorted by booked minutes:");
+            return;
+        }
+        
+        System.out.println("Busy days sorted by booked minutes:");
+        for (BusyDay busyDay : busyDays) {
+            System.out.println(busyDay.getDate() + ": " + busyDay.getTotalMinutesBooked() + " minutes booked");
 
-            for (BusyDay busyDay : busyDays) {
-                System.out.println(busyDay.getDate() + ": " + busyDay.getTotalMinutesBooked() + " minutes booked");
-
-                for (Event event : busyDay.getEvents()) {
-                    long durationMinutes = Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes();
-                    System.out.println("  Event: [" + event.getTitle() + "] " + event.getTimeStart() + " - " + event.getTimeEnd() +
-                            " (" + durationMinutes + " minutes)");
-                }
+            for (Event event : busyDay.getEvents()) {
+                long durationMinutes = Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes();
+                System.out.println("  Event: [" + event.getTitle() + "] " + event.getTimeStart() + " - " + event.getTimeEnd() +
+                        " (" + durationMinutes + " minutes)");
             }
         }
     }

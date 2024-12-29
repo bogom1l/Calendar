@@ -22,9 +22,10 @@ public class FindCommand implements Command {
 
         if (matchingEvents.isEmpty()) {
             System.out.println("No events found containing the search term.");
-        } else {
-            System.out.println("Matching events:");
-            matchingEvents.forEach(System.out::println);
+            return;
         }
+
+        System.out.println("Matching events:");
+        matchingEvents.forEach(System.out::println);
     }
 }

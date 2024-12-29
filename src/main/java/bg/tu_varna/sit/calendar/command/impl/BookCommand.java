@@ -27,11 +27,12 @@ public class BookCommand implements Command {
             return;
         }
 
-        if (eventService.bookEvent(event)) {
-            System.out.println("Event booked successfully.");
-        } else {
+        if (!eventService.bookEvent(event)) {
             System.out.println("Failed to book the event. Please try again.");
+            return;
         }
+
+        System.out.println("Event booked successfully.");
     }
 
     private Event createEvent() {
@@ -60,11 +61,11 @@ public class BookCommand implements Command {
         while (true) {
             LocalDate date = InputUtils.readLocalDate("Date (YYYY-MM-DD): ");
 
-            if (holidayService.isHoliday(date)) {
-                System.out.println("Cannot schedule an event on " + date + " because it's a holiday. Please enter a different date.");
-            } else {
+            if (!holidayService.isHoliday(date)) {
                 return date;
             }
+
+            System.out.println("Cannot schedule an event on " + date + " because it's a holiday. Please enter a different date.");
         }
     }
 }

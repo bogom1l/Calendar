@@ -36,10 +36,11 @@ public class SaveAsCommand implements Command {
     }
 
     private void saveCalendar(File file) {
-        if (eventService.saveAs(file)) {
-            System.out.println("Calendar saved as " + file.getAbsolutePath());
-        } else {
+        if (!eventService.saveAs(file)) {
             System.out.println("Failed to save the calendar.");
+            return;
         }
+
+        System.out.println("Calendar saved as " + file.getAbsolutePath());
     }
 }

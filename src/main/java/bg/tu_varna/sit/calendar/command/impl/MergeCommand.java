@@ -21,7 +21,9 @@ public class MergeCommand implements Command {
     public void execute() {
         String calendarFileName = InputUtils.readString("Enter the name of the calendar to merge (e.g., calendar.xml): ");
         EventsWrapper otherEventsWrapper = loadEventsWrapper(calendarFileName);
-        if (otherEventsWrapper == null) return;
+        if (otherEventsWrapper == null) {
+            return;
+        }
 
         List<Event> otherEvents = otherEventsWrapper.getEvents();
         List<Event> currentEvents = eventService.getEventsWrapper().getEvents();

@@ -9,11 +9,12 @@ public class CommandExecutor {
 
     public void executeCommand(CommandType commandType) {
         Command command = commandFactory.getCommand(commandType);
-        if (command != null) {
-            command.execute();
-        } else {
+        if (command == null) {
             System.out.println("Invalid Command");
+            return;
         }
+
+        command.execute();
     }
 }
 

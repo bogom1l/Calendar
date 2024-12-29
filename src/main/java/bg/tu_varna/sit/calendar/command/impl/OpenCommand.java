@@ -47,10 +47,11 @@ public class OpenCommand implements Command {
     }
 
     private void openCalendar(File file) {
-        if (eventService.open(file)) {
-            System.out.println("Calendar opened successfully.");
-        } else {
+        if (!eventService.open(file)) {
             System.out.println("Failed to open calendar. Make sure the file exists.");
+            return;
         }
+
+        System.out.println("Calendar opened successfully.");
     }
 }

@@ -24,11 +24,12 @@ public class UnbookCommand implements Command {
 
         Optional<Event> eventToRemove = eventService.findEventByDateAndTimeStartAndTimeEnd(date, timeStart, timeEnd);
 
-        if (eventToRemove.isPresent()) {
-            eventService.unbookEvent(eventToRemove.get());
-            System.out.println("Event unbooked successfully.");
-        } else {
+        if (eventToRemove.isEmpty()) {
             System.out.println("Event not found.");
+            return;
         }
+
+        eventService.unbookEvent(eventToRemove.get());
+        System.out.println("Event unbooked successfully.");
     }
 }

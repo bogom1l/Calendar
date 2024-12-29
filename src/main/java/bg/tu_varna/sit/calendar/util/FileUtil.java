@@ -35,11 +35,12 @@ public class FileUtil {
 
         if (xmlFiles.isEmpty()) {
             System.out.println("No XML files found in the main project directory.");
-        } else {
-            System.out.println("XML files in the main project directory:");
-            for (File file : xmlFiles) {
-                System.out.println("- " + file.getName());
-            }
+            return;
+        }
+
+        System.out.println("XML files in the main project directory:");
+        for (File file : xmlFiles) {
+            System.out.println("- " + file.getName());
         }
     }
 

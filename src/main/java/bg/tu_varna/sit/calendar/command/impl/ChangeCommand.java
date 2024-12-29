@@ -35,11 +35,12 @@ public class ChangeCommand implements Command {
         String newValue = InputUtils.readString("Enter the new value: ");
 
         boolean success = updateField(event, fieldToChange, newValue, date);
-        if (success) {
-            System.out.println("Event updated successfully.");
-        } else {
+        if (!success) {
             System.out.println("Failed to update the event. Invalid value or conflict detected.");
+            return;
         }
+
+        System.out.println("Event updated successfully.");
     }
 
     private String getFieldToChange() {
