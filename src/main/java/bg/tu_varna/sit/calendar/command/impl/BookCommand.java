@@ -22,6 +22,11 @@ public class BookCommand implements Command {
     public void execute() {
         Event event = createEvent();
 
+        if (!eventService.isTimeRangeAvailableForDate(event.getDate(), event.getTimeStart(), event.getTimeEnd())) {
+            System.out.println("The selected time period is already booked. Please try a different time.");
+            return;
+        }
+
         if (eventService.bookEvent(event)) {
             System.out.println("Event booked successfully.");
         } else {
