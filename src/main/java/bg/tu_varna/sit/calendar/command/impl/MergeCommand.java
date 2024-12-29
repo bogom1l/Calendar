@@ -71,25 +71,23 @@ public class MergeCommand implements Command {
 
         int choice = promptUserForConflictResolution();
         switch (choice) {
-            case 1 -> System.out.println("Kept the current event."); //todo currevents.remove??
+            case 1 -> System.out.println("Kept the current event.");
             case 2 -> {
                 System.out.println("Replaced with the other event.");
-                currentEvents.remove(currentEvent); // Remove current event if replacing
+                currentEvents.remove(currentEvent);
                 eventsToAdd.add(otherEvent);
             }
-            case 3 -> System.out.println("Skipped both events.");
             default -> System.out.println("Invalid choice. Skipping...");
         }
     }
 
     private int promptUserForConflictResolution() {
         int choice = 0;
-        while (choice < 1 || choice > 3) {
+        while (choice < 1 || choice > 2) {
             System.out.println("Choose which event to keep:");
             System.out.println("1. Current Event");
             System.out.println("2. Other Event");
-            System.out.println("3. Skip Both");
-            choice = InputUtils.readInt("Enter your choice (1-3): ");
+            choice = InputUtils.readInt("Enter your choice (1/2): ");
         }
         return choice;
     }
