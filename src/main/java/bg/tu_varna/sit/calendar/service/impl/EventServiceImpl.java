@@ -131,7 +131,6 @@ public class EventServiceImpl implements EventService {
         return events;
     }
 
-    // Returns a new list of all events to protect the original list from external modifications
     @Override
     public List<Event> getAllEvents() {
         return new ArrayList<>(this.eventsWrapper.getEvents());
@@ -219,16 +218,15 @@ public class EventServiceImpl implements EventService {
     public List<BusyDay> getBusyDaysWithEventsInRange(LocalDate from, LocalDate to) {
         List<BusyDay> busyDays = new ArrayList<>();
 
-        // Iterate through all dates in the range and calculate booked minutes and events
         LocalDate currentDate = from;
         while (!currentDate.isAfter(to)) {
             LocalDate finalCurrentDate = currentDate;
             List<Event> eventsForDay = eventsWrapper.getEvents().stream()
-                    .filter(event -> event.getDate().equals(finalCurrentDate)) // Filter events for this date
+                    .filter(event -> event.getDate().equals(finalCurrentDate))
                     .toList();
 
             long bookedMinutes = eventsForDay.stream()
-                    .mapToLong(event -> Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes()) // Calculate the total minutes
+                    .mapToLong(event -> Duration.between(event.getTimeStart(), event.getTimeEnd()).toMinutes())
                     .sum();
 
             if (bookedMinutes > 0) {
@@ -237,7 +235,6 @@ public class EventServiceImpl implements EventService {
             currentDate = currentDate.plusDays(1);
         }
 
-        // Sort by booked minutes in descending order
         busyDays.sort(Comparator.comparingLong(BusyDay::getTotalMinutesBooked).reversed());
 
         return busyDays;
@@ -245,7 +242,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByDate(LocalDate date) {
-        return this.eventsWrapper.getEvents()
+        return getAllEvents()
                 .stream()
                 .filter(event -> event.getDate().equals(date))
                 .toList();
@@ -253,7 +250,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByDate(LocalDate date, EventsWrapper wrapper) {
-        return wrapper.getEvents()
+        return getAllEvents()
                 .stream()
                 .filter(event -> event.getDate().equals(date))
                 .toList();

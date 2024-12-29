@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.calendar.command.impl;
 
 import bg.tu_varna.sit.calendar.command.Command;
+import bg.tu_varna.sit.calendar.model.Event;
 import bg.tu_varna.sit.calendar.service.EventService;
 
 public class ListAllCommand implements Command {
@@ -13,8 +14,9 @@ public class ListAllCommand implements Command {
     @Override
     public void execute() {
         System.out.println("Listing all events:");
-        eventService.listAllEvents().forEach(event ->
-                System.out.println(event.toString())
-        );
+
+        eventService.listAllEvents().stream()
+                .map(Event::toString)
+                .forEach(System.out::println);
     }
 }

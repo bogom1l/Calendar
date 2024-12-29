@@ -58,4 +58,3 @@ public class ApplicationManager {
         return commandType == CommandType.OPEN || commandType == CommandType.EXIT;
     }
 }
-

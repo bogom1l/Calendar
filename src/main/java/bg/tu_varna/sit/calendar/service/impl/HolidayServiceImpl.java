@@ -47,7 +47,7 @@ public class HolidayServiceImpl implements HolidayService {
 
     @Override
     public Set<Holiday> getHolidays() {
-        return new HashSet<>(holidaysWrapper.getHolidays()); // Returns a copy to ensure immutability
+        return new HashSet<>(holidaysWrapper.getHolidays());
     }
 
     private void saveHolidays() {

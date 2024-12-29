@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileUtil {
-
     private static final String PROJECT_DIRECTORY = System.getProperty("user.dir");
 
     public static String getProjectDirectory() {
@@ -43,5 +42,4 @@ public class FileUtil {
             System.out.println("- " + file.getName());
         }
     }
-
 }

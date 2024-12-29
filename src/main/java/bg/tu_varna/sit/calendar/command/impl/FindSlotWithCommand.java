@@ -47,6 +47,7 @@ public class FindSlotWithCommand implements Command {
             for (Holiday holiday : holidaysWrapper.getHolidays()) {
                 holidays.add(holiday.getDate());
             }
+
             return holidays;
         } catch (Exception e) {
             System.out.println("Error loading " + fileName + ": " + e.getMessage());

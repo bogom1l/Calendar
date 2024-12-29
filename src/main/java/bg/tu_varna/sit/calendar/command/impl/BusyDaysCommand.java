@@ -28,7 +28,7 @@ public class BusyDaysCommand implements Command {
             System.out.println("No busy days in the specified range.");
             return;
         }
-        
+
         System.out.println("Busy days sorted by booked minutes:");
         for (BusyDay busyDay : busyDays) {
             System.out.println(busyDay.getDate() + ": " + busyDay.getTotalMinutesBooked() + " minutes booked");

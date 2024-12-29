@@ -21,7 +21,6 @@ public class Event {
 
     private String description;
 
-    // Default constructor required by JAXB
     public Event() {
     }
 

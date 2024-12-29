@@ -11,7 +11,10 @@ import bg.tu_varna.sit.calendar.util.JAXBParser;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class FindSlotCommand implements Command {
     private final EventService eventService;
@@ -30,7 +33,7 @@ public class FindSlotCommand implements Command {
         LocalDate fromDate = InputUtils.readLocalDate("Enter the starting date (yyyy-mm-dd): ");
 
         int hoursToFind = InputUtils.readInt("Enter the number of hours to find (1-8): ");
-        if(hoursToFind > 8) {
+        if (hoursToFind > 8) {
             System.out.println("The number of hours to find exceeds 8 hours!");
             return;
         }
@@ -75,7 +78,7 @@ public class FindSlotCommand implements Command {
     }
 
     private List<Event> getSortedEventsForDate(LocalDate date) {
-        List<Event> events = new ArrayList<>(eventService.getEventsByDate(date)); //todo why new arraylist?
+        List<Event> events = eventService.getEventsByDate(date);
         events.sort(Comparator.comparing(Event::getTimeStart));
         return events;
     }
@@ -86,7 +89,7 @@ public class FindSlotCommand implements Command {
                 printSlot(currentDate, availableStart);
                 return true;
             }
-            availableStart = event.getTimeEnd(); // Move to the end of the current event
+            availableStart = event.getTimeEnd();
         }
 
         // Check after the last event
