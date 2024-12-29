@@ -1,0 +1,37 @@
+<events>
+    <event>
+        <date>2026-08-01</date>
+        <description>Music Concert</description>
+        <timeEnd>23:30</timeEnd>
+        <timeStart>20:00</timeStart>
+        <title>Rock Fest</title>
+    </event>
+    <event>
+        <date>2026-09-10</date>
+        <description>Wedding Anniversary</description>
+        <timeEnd>23:59</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Anniversary Dinner</title>
+    </event>
+    <event>
+        <date>2026-10-05</date>
+        <description>Halloween Party</description>
+        <timeEnd>00:00</timeEnd>
+        <timeStart>21:00</timeStart>
+        <title>Spooky Bash</title>
+    </event>
+    <event>
+        <date>2026-11-22</date>
+        <description>Thanksgiving Dinner</description>
+        <timeEnd>22:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Thanksgiving Feast</title>
+    </event>
+    <event>
+        <date>2026-12-24</date>
+        <description>Christmas Eve</description>
+        <timeEnd>23:59</timeEnd>
+        <timeStart>20:00</timeStart>
+        <title>Christmas Celebration</title>
+    </event>
+</events>

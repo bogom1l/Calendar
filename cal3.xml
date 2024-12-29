@@ -1,0 +1,37 @@
+<events>
+    <event>
+        <date>2025-01-01</date>
+        <description>New Year Celebration</description>
+        <timeEnd>01:00</timeEnd>
+        <timeStart>00:00</timeStart>
+        <title>New Year's Party</title>
+    </event>
+    <event>
+        <date>2025-02-25</date>
+        <description>Office Team Building</description>
+        <timeEnd>17:00</timeEnd>
+        <timeStart>09:00</timeStart>
+        <title>Work Retreat</title>
+    </event>
+    <event>
+        <date>2025-03-21</date>
+        <description>Spring Festival</description>
+        <timeEnd>19:30</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Seasonal Celebration</title>
+    </event>
+    <event>
+        <date>2025-04-15</date>
+        <description>Business Conference</description>
+        <timeEnd>20:00</timeEnd>
+        <timeStart>08:30</timeStart>
+        <title>Annual Conference</title>
+    </event>
+    <event>
+        <date>2025-06-22</date>
+        <description>Family Reunion</description>
+        <timeEnd>23:59</timeEnd>
+        <timeStart>10:00</timeStart>
+        <title>Summer Family Meet</title>
+    </event>
+</events>
