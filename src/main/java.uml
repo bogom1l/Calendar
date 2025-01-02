@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/wavepc/Documents/My Git Repos/Calendar/src/main/java</OriginalElement>
+  <nodes>
+    <node x="861.4826743000999" y="41.98231253951502">bg.tu_varna.sit.calendar.command.impl.FindCommand</node>
+    <node x="590.0988127775468" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.ChangeCommand</node>
+    <node x="1509.0929916510006" y="1244.482668715407">bg.tu_varna.sit.Main</node>
+    <node x="1102.3582804722746" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.ExitCommand</node>
+    <node x="1226.3359689962892" y="1200.0223287172632">bg.tu_varna.sit.calendar.util.JAXBParser</node>
+    <node x="961.9741917688709" y="1193.5223287172632">bg.tu_varna.sit.calendar.service.EventService</node>
+    <node x="1283.0278368225229" y="847.6051931950306">bg.tu_varna.sit.calendar.util.LocalDateAdapter</node>
+    <node x="1023.7109270750507" y="872.6843320477773">bg.tu_varna.sit.calendar.model.BusyDay</node>
+    <node x="420.45550596159154" y="41.98231253951502">bg.tu_varna.sit.calendar.command.Command</node>
+    <node x="1278.8907731944842" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.SaveAsCommand</node>
+    <node x="1511.4232659166937" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.BusyDaysCommand</node>
+    <node x="1302.2832680727158" y="924.6942601624737">bg.tu_varna.sit.calendar.util.LocalTimeAdapter</node>
+    <node x="795.8083135840623" y="872.6843320477773">bg.tu_varna.sit.calendar.ui.UserInputHandler</node>
+    <node x="1757.4180760606735" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.ListAllCommand</node>
+    <node x="2003.4128862046532" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.FindSlotWithCommand</node>
+    <node x="2273.6558443053327" y="38.446154822793346">bg.tu_varna.sit.calendar.command.impl.HolidayCommand</node>
+    <node x="1374.3762410064455" y="686.6511769996479">bg.tu_varna.sit.calendar.model.Holiday</node>
+    <node x="1090.842277295254" y="698.9467130924033">bg.tu_varna.sit.calendar.util.FileUtil</node>
+    <node x="746.3083135840625" y="674.9467130924033">bg.tu_varna.sit.calendar.ui.ApplicationManager</node>
+    <node x="2528.443390145358" y="50.446154822793346">bg.tu_varna.sit.calendar.command.impl.FindSlotCommand</node>
+    <node x="372.6644182095888" y="830.1051931950306">bg.tu_varna.sit.calendar.command.CommandFactory</node>
+    <node x="340.41190279029934" y="674.9467130924033">bg.tu_varna.sit.calendar.command.CommandExecutor</node>
+    <node x="3024.108812481693" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.HelpCommand</node>
+    <node x="2776.2761013135255" y="62.446154822793346">bg.tu_varna.sit.calendar.command.impl.OpenCommand</node>
+    <node x="3315.2933445479093" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.AgendaCommand</node>
+    <node x="102.14502780188741" y="1158.5223287172632">bg.tu_varna.sit.calendar.util.InputUtils</node>
+    <node x="47.92126086687449" y="797.6173979925998">bg.tu_varna.sit.calendar.model.HolidaysWrapper</node>
+    <node x="4634.0882305892965" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.CloseCommand</node>
+    <node x="230.69054081236516" y="399.9454128536871">bg.tu_varna.sit.calendar.service.impl.HolidayServiceImpl</node>
+    <node x="3579.7827611087687" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.UnbookCommand</node>
+    <node x="3828.3723393965074" y="45.35458815736007">bg.tu_varna.sit.calendar.command.impl.BookCommand</node>
+    <node x="623.921398849686" y="429.44541285368723">bg.tu_varna.sit.calendar.service.HolidayService</node>
+    <node x="27.516601067167585" y="962.2487345632596">bg.tu_varna.sit.calendar.model.AppState</node>
+    <node x="4094.961917684246" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.MergeCommand</node>
+    <node x="56.42126086687449" y="674.9467130924033">bg.tu_varna.sit.calendar.model.EventsWrapper</node>
+    <node x="-20.05727909113807" y="414.35039426201">bg.tu_varna.sit.calendar.model.Event</node>
+    <node x="4343.551495971985" y="57.35458815736007">bg.tu_varna.sit.calendar.command.impl.SaveCommand</node>
+    <node x="84.38029035635381" y="-134.24592456838332">bg.tu_varna.sit.calendar.command.CommandType</node>
+    <node x="569.6133217806603" y="1152.0223287172632">bg.tu_varna.sit.calendar.service.impl.EventServiceImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.HolidayCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-4.037175090161327E-4" y="43.50045315916414" />
+      <point x="2390.6554405878237" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.MergeCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-3.647129042292363E-4" y="31.500456455247992" />
+      <point x="4202.961552971342" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.AgendaCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="1.9146344948239857E-4" y="-31.499535094848525" />
+      <point x="3423.293536011359" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.UnbookCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="2.3745772432448575E-4" y="-31.500459634928177" />
+      <point x="3687.782998566493" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.ChangeCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-1.4027929617554946E-4" y="-31.50021159960376" />
+      <point x="698.0986724982506" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.FindSlotCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-1.4666001789009897E-5" y="-31.499986432246857" />
+      <point x="2636.4433754793563" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.BusyDaysCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="19.050417834180962" y="23.67678239204224" />
+      <point x="1641.2547215675297" y="105.62293721483559" />
+      <point x="1641.2547215675297" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.FindSlotWithCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-2.7953170729233534E-4" y="31.50042394868636" />
+      <point x="2118.412606672946" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.HelpCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="3.0130433242447907E-4" y="31.500220436061852" />
+      <point x="3157.6091137860253" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.FindCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="2.932452361901369" y="36.31218140030302" />
+      <point x="976.5866833869839" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.OpenCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-4.10816674502712E-4" y="-31.500034507492146" />
+      <point x="2884.275690496851" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.ExitCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="9.75883370547217" y="26.45782020869723" />
+      <point x="1192.1171141777468" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.BookCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-3.6715312035084935E-4" y="43.499531420647486" />
+      <point x="3945.371972243387" y="196.39051890832746" />
+      <point x="484.9558775024716" y="196.39051890832746" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.service.impl.HolidayServiceImpl" target="bg.tu_varna.sit.calendar.service.HolidayService" relationship="REALIZATION">
+      <point x="131.0" y="0.0" />
+      <point x="705.921398849686" y="443.4454128536871" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.service.impl.EventServiceImpl" target="bg.tu_varna.sit.calendar.service.EventService" relationship="REALIZATION">
+      <point x="-122.0" y="0.0" />
+      <point x="1036.974191768871" y="1207.5223287172632" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.ListAllCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="108.00025768320393" y="-2.2799174152865476E-4" />
+      <point x="1973.4183337438774" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.CloseCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="4.5740008863504045E-4" y="-31.49998792421694" />
+      <point x="4742.088687989385" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.SaveCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="-1.1677639577101218E-4" y="31.50000101071142" />
+      <point x="4451.551379195589" y="196.39051890832746" />
+      <point x="3138.247" y="196.39051890832746" />
+      <point x="3138.247" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+    <edge source="bg.tu_varna.sit.calendar.command.impl.SaveAsCommand" target="bg.tu_varna.sit.calendar.command.Command" relationship="REALIZATION">
+      <point x="3.3009320259225206E-4" y="-31.499791625366868" />
+      <point x="1386.8911032876867" y="195.0" />
+      <point x="484.9558775024716" y="195.0" />
+      <point x="3.715408800530895E-4" y="-13.999818963587714" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.7191559884667711" showDependencies="false" x="1305.4444052064382" y="545.7221717004899" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
