@@ -11,10 +11,7 @@ import bg.tu_varna.sit.calendar.util.JAXBParser;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FindSlotCommand implements Command {
     private final EventService eventService;
@@ -78,7 +75,7 @@ public class FindSlotCommand implements Command {
     }
 
     private List<Event> getSortedEventsForDate(LocalDate date) {
-        List<Event> events = eventService.getEventsByDate(date);
+        List<Event> events = new ArrayList<>(eventService.getEventsByDate(date));
         events.sort(Comparator.comparing(Event::getTimeStart));
         return events;
     }
