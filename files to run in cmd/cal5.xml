@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<events>
+    <event>
+        <date>2023-03-15</date>
+        <description>Team Meeting</description>
+        <timeEnd>10:00</timeEnd>
+        <timeStart>09:30</timeStart>
+        <title>Weekly Sync</title>
+    </event>
+    <event>
+        <date>2023-04-20</date>
+        <description>Lunch with client</description>
+        <timeEnd>13:30</timeEnd>
+        <timeStart>12:30</timeStart>
+        <title>Business Lunch</title>
+    </event>
+    <event>
+        <date>2023-05-05</date>
+        <description>Conference Call</description>
+        <timeEnd>16:00</timeEnd>
+        <timeStart>15:45</timeStart>
+        <title>Quarterly Review</title>
+    </event>
+    <event>
+        <date>2023-06-10</date>
+        <description>Vacation</description>
+        <timeEnd>00:00</timeEnd>
+        <timeStart>00:00</timeStart>
+        <title>Summer Break</title>
+    </event>
+    <event>
+        <date>2023-07-01</date>
+        <description>New Product Launch</description>
+        <timeEnd>18:30</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Product Release</title>
+    </event>
+    <event>
+        <date>2024-02-14</date>
+        <description>Valentine's Day Celebration</description>
+        <timeEnd>22:00</timeEnd>
+        <timeStart>19:00</timeStart>
+        <title>Romantic Dinner</title>
+    </event>
+    <event>
+        <date>2024-03-01</date>
+        <description>Weekend Getaway</description>
+        <timeEnd>23:59</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Beach Trip</title>
+    </event>
+    <event>
+        <date>2024-04-12</date>
+        <description>Project Deadline</description>
+        <timeEnd>17:00</timeEnd>
+        <timeStart>09:00</timeStart>
+        <title>Final Submission</title>
+    </event>
+    <event>
+        <date>2024-05-25</date>
+        <description>Birthday Celebration</description>
+        <timeEnd>21:00</timeEnd>
+        <timeStart>18:00</timeStart>
+        <title>Surprise Party</title>
+    </event>
+    <event>
+        <date>2024-06-10</date>
+        <description>Special Party</description>
+        <timeEnd>16:00</timeEnd>
+        <timeStart>15:00</timeStart>
+        <title>Special Party</title>
+    </event>
+</events>
