@@ -45,9 +45,6 @@
                 </executions>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <relocations>
-                        <!-- Optional: Relocate dependencies to avoid conflicts -->
-                    </relocations>
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>bg.tu_varna.sit.Main</mainClass>
