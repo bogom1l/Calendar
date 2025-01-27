@@ -33,4 +33,4 @@ mvnw.cmd
 HELP.md
 .gitattributes
 
-!./files to run in cmd/specific-file.jar
+!./files to run in cmd/Calendar2-1.0-SNAPSHOT.jar
