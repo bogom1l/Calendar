@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
     <event>
         <date>2026-08-01</date>
-        <description>Music Concert</description>
+        <description>Music Concert And Sport</description>
         <timeEnd>23:30</timeEnd>
         <timeStart>20:00</timeStart>
         <title>Rock Fest</title>
@@ -25,13 +26,6 @@
         <description>Thanksgiving Dinner</description>
         <timeEnd>22:00</timeEnd>
         <timeStart>18:00</timeStart>
-        <title>Thanksgiving Feast</title>
-    </event>
-    <event>
-        <date>2026-12-24</date>
-        <description>Christmas Eve</description>
-        <timeEnd>23:59</timeEnd>
-        <timeStart>20:00</timeStart>
-        <title>Christmas Celebration</title>
+        <title>Thanksgiving Feast 2</title>
     </event>
 </events>
